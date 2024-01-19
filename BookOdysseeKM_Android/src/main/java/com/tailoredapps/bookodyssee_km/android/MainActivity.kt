@@ -11,21 +11,29 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.tailoredapps.bookodyssee_km.android.base_ui.BookOdysseeTheme
-import com.tailoredapps.bookodyssee_km.android.start.StartScreenView
+import com.tailoredapps.bookodyssee_km.android.login.LoginScreen
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        startKoin {
+            androidLogger(Level.ERROR)
+            androidContext(this@MainActivity)
+            modules(appModules)
+        }
+
         setContent {
             BookOdysseeTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    StartScreenView(
-                        onLoginClick = {},
-                        onRegisterClick = {}
-                    )
+                    LoginScreen(onLoginSuccess = {})
                 }
             }
         }

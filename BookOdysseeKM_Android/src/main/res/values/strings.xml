@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="screen_home" translatable="false">Home</string>
+    <string name="screen_book">Detail</string>
+    <string name="app_name">BookOdyssee</string>
+    <string name="welcome_title">Welcome to\nBookOdyssee!</string>
+    <string name="welcome_subtitle">Your pocket library to go</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_register">Register</string>
+    <string name="lb_username">Username</string>
+    <string name="lb_password">Password</string>
+    <string name="lb_password_confirm">Password Confirm</string>
+    <string name="registration_error">Looks like something went wrong. Be sure your password is matching and do not leave a field empty!</string>
+    <string name="error_login">Wrong username or password!</string>
+    <string name="search_hint">Enter title, author…</string>
+    <string name="btn_add_to_list">Add to reading list</string>
+    <string name="lb_state">State</string>
+    <string name="lb_page_count">Page count</string>
+    <string name="lb_year">Year</string>
+    <string name="lb_publisher">Publisher</string>
+    <string name="lb_author">Author</string>
+    <string name="btn_remove_from_list">Remove from reading list</string>
+    <string name="btn_start_reading">Start reading</string>
+    <string name="btn_finish">Finish</string>
+    <string name="lb_currently_reading">Currently reading</string>
+    <string name="lb_to_read">Want to read</string>
+    <string name="title_finished">Finished</string>
+</resources>

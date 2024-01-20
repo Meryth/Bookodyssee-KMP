@@ -21,9 +21,11 @@ import com.tailoredapps.bookodyssee_km.android.R
 import com.tailoredapps.bookodyssee_km.android.base_ui.PrimaryButton
 
 @Composable
-fun StartScreenScreen() {
+fun StartScreen(
+    onLoginClick: () -> Unit
+) {
     StartScreenView(
-        onLoginClick = {},
+        onLoginClick = onLoginClick,
         onRegisterClick = {}
     )
 }

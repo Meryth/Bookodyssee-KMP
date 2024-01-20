@@ -25,7 +25,9 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            //put your multiplatform dependencies here
+            api(libs.precompose)
+            api(libs.precompose.viewmodel) // For ViewModel intergration
+            api(libs.precompose.koin) // For Koin intergration
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

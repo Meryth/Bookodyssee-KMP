@@ -12,6 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.tailoredapps.bookodyssee_km.android.base_ui.BookOdysseeTheme
 import com.tailoredapps.bookodyssee_km.android.login.LoginScreen
+import com.tailoredapps.bookodyssee_km.android.start.StartScreen
+import moe.tlaster.precompose.PreComposeApp
+import moe.tlaster.precompose.navigation.NavHost
+import moe.tlaster.precompose.navigation.rememberNavigator
+import moe.tlaster.precompose.navigation.transition.NavTransition
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -28,12 +33,38 @@ class MainActivity : ComponentActivity() {
         }
 
         setContent {
-            BookOdysseeTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    LoginScreen(onLoginSuccess = {})
+            PreComposeApp {
+                val navigator = rememberNavigator()
+                BookOdysseeTheme {
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colorScheme.background
+                    ) {
+                        //TODO: interesting for future, moving the NavHost out of MainActivity to make code easier readable
+                        NavHost(
+                            navigator = navigator,
+                            // Navigation transition for the scenes in this NavHost, this is optional
+                            navTransition = NavTransition(),
+                            initialRoute = "/start",
+                        ) {
+                            // Define a scene to the navigation graph
+                            scene(
+                                // Scene's route path
+                                route = "/start"
+                            ) {
+                                StartScreen(
+                                    onLoginClick = {
+                                        navigator.navigate("/login")
+                                    }
+                                )
+                            }
+                            scene(
+                                route = "/login",
+                            ) {
+                                LoginScreen(onLoginSuccess = { })
+                            }
+                        }
+                    }
                 }
             }
         }

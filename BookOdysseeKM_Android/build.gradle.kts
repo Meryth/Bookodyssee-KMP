@@ -50,5 +50,9 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
 
-    implementation("at.florianschuster.control:control-core:1.2.0")
+    implementation(libs.control.core)
+
+    api(libs.compose.foundation)
+    api(libs.androidx.animation)
+
 }

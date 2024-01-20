@@ -1,13 +1,18 @@
 [versions]
 agp = "8.2.0"
+animation = "1.5.4"
+controlCore = "1.2.0"
 koinCore = "3.5.0"
 kotlin = "1.9.20"
 compose = "1.5.4"
 compose-compiler = "1.5.4"
 compose-material3 = "1.1.2"
 androidx-activityCompose = "1.8.0"
+precompose = "1.5.10"
 
 [libraries]
+androidx-animation = { module = "androidx.compose.animation:animation", version.ref = "animation" }
+control-core = { module = "at.florianschuster.control:control-core", version.ref = "controlCore" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinCore" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinCore" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
@@ -18,6 +23,9 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = 
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
+precompose = { module = "moe.tlaster:precompose", version.ref = "precompose" }
+precompose-koin = { module = "moe.tlaster:precompose-koin", version.ref = "precompose" }
+precompose-viewmodel = { module = "moe.tlaster:precompose-viewmodel", version.ref = "precompose" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

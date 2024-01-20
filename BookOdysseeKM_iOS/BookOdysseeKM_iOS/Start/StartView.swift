@@ -37,9 +37,9 @@ struct StartView: View {
                 
                 Group{
                     NavigationLink(
-//                        destination: ReactorView(LoginReactor(moc: viewContext)) {
-//                            LoginView()
-//                        }
+                        destination: ReactorView(LoginReactor()) {
+                            LoginView()
+                        }
                     ) {
                         Text("Login").padding(15).buttonStyle(.borderless)
                             .frame(maxWidth: .infinity)
@@ -51,7 +51,9 @@ struct StartView: View {
                 
                 
                 NavigationLink(
-                    destination: LoginView()
+                    destination: ReactorView(LoginReactor()) {
+                        LoginView()
+                    }
 //                    destination: ReactorView(RegistrationReactor(moc: viewContext)) {
 //                        RegistrationView()
 //                    }

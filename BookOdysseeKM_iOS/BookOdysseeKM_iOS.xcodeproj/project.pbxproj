@@ -13,6 +13,7 @@
 		516D69932B5C18D900908D6C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D69922B5C18D900908D6C /* LoginView.swift */; };
 		516D69962B5C18F000908D6C /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D69952B5C18F000908D6C /* StartView.swift */; };
 		516D69992B5C191C00908D6C /* AsyncReactor in Frameworks */ = {isa = PBXBuildFile; productRef = 516D69982B5C191C00908D6C /* AsyncReactor */; };
+		516D699B2B5C1A4E00908D6C /* LoginReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D699A2B5C1A4E00908D6C /* LoginReactor.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		516D69922B5C18D900908D6C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		516D69952B5C18F000908D6C /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		516D699A2B5C1A4E00908D6C /* LoginReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReactor.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* BookOdysseeKM_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookOdysseeKM_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				516D69922B5C18D900908D6C /* LoginView.swift */,
+				516D699A2B5C1A4E00908D6C /* LoginReactor.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 			files = (
 				516D69932B5C18D900908D6C /* LoginView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				516D699B2B5C1A4E00908D6C /* LoginReactor.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				516D69962B5C18F000908D6C /* StartView.swift in Sources */,
 			);

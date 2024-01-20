@@ -8,7 +8,7 @@
 
 
 import SwiftUI
-//import AsyncReactor
+import AsyncReactor
 
 struct StartView: View {
     
@@ -37,7 +37,6 @@ struct StartView: View {
                 
                 Group{
                     NavigationLink(
-                        destination: LoginView()
 //                        destination: ReactorView(LoginReactor(moc: viewContext)) {
 //                            LoginView()
 //                        }

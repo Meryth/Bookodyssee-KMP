@@ -1,11 +1,14 @@
 import SwiftUI
+import AsyncReactor
 import shared
 
 struct ContentView: View {
-	let greet = Greeting().greet()
+	//let greet = Greeting().greet()
 
 	var body: some View {
-		StartView()
+        ReactorView(SearchReactor()) {
+            SearchView()
+        }
 	}
 }
 

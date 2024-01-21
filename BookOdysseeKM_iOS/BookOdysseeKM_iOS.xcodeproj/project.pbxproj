@@ -10,6 +10,11 @@
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
+		512B5F6C2B5D53DD00A2A3ED /* KMPNativeCoroutinesAsync in Frameworks */ = {isa = PBXBuildFile; productRef = 512B5F6B2B5D53DD00A2A3ED /* KMPNativeCoroutinesAsync */; };
+		512B5F6E2B5D53DD00A2A3ED /* KMPNativeCoroutinesCore in Frameworks */ = {isa = PBXBuildFile; productRef = 512B5F6D2B5D53DD00A2A3ED /* KMPNativeCoroutinesCore */; };
+		512B5F712B5D542A00A2A3ED /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512B5F702B5D542A00A2A3ED /* SearchView.swift */; };
+		512B5F732B5D544400A2A3ED /* SearchReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512B5F722B5D544400A2A3ED /* SearchReactor.swift */; };
+		512B5F762B5D54BA00A2A3ED /* BookDataRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512B5F752B5D54BA00A2A3ED /* BookDataRow.swift */; };
 		516D69932B5C18D900908D6C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D69922B5C18D900908D6C /* LoginView.swift */; };
 		516D69962B5C18F000908D6C /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D69952B5C18F000908D6C /* StartView.swift */; };
 		516D69992B5C191C00908D6C /* AsyncReactor in Frameworks */ = {isa = PBXBuildFile; productRef = 516D69982B5C191C00908D6C /* AsyncReactor */; };
@@ -34,6 +39,9 @@
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		512B5F702B5D542A00A2A3ED /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		512B5F722B5D544400A2A3ED /* SearchReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchReactor.swift; sourceTree = "<group>"; };
+		512B5F752B5D54BA00A2A3ED /* BookDataRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDataRow.swift; sourceTree = "<group>"; };
 		516D69922B5C18D900908D6C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		516D69952B5C18F000908D6C /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		516D699A2B5C1A4E00908D6C /* LoginReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReactor.swift; sourceTree = "<group>"; };
@@ -47,7 +55,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				512B5F6C2B5D53DD00A2A3ED /* KMPNativeCoroutinesAsync in Frameworks */,
 				516D69992B5C191C00908D6C /* AsyncReactor in Frameworks */,
+				512B5F6E2B5D53DD00A2A3ED /* KMPNativeCoroutinesCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +70,23 @@
 				058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		512B5F6F2B5D541E00A2A3ED /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				512B5F702B5D542A00A2A3ED /* SearchView.swift */,
+				512B5F722B5D544400A2A3ED /* SearchReactor.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		512B5F742B5D54AE00A2A3ED /* BaseItems */ = {
+			isa = PBXGroup;
+			children = (
+				512B5F752B5D54BA00A2A3ED /* BookDataRow.swift */,
+			);
+			path = BaseItems;
 			sourceTree = "<group>";
 		};
 		516D69912B5C18D000908D6C /* Login */ = {
@@ -99,6 +126,8 @@
 		7555FF7D242A565900829871 /* BookOdysseeKM_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				512B5F742B5D54AE00A2A3ED /* BaseItems */,
+				512B5F6F2B5D541E00A2A3ED /* Search */,
 				516D69942B5C18E700908D6C /* Start */,
 				516D69912B5C18D000908D6C /* Login */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
@@ -137,6 +166,8 @@
 			name = BookOdysseeKM_iOS;
 			packageProductDependencies = (
 				516D69982B5C191C00908D6C /* AsyncReactor */,
+				512B5F6B2B5D53DD00A2A3ED /* KMPNativeCoroutinesAsync */,
+				512B5F6D2B5D53DD00A2A3ED /* KMPNativeCoroutinesCore */,
 			);
 			productName = BookOdysseeKM_iOS;
 			productReference = 7555FF7B242A565900829871 /* BookOdysseeKM_iOS.app */;
@@ -168,6 +199,7 @@
 			mainGroup = 7555FF72242A565900829871;
 			packageReferences = (
 				516D69972B5C191C00908D6C /* XCRemoteSwiftPackageReference "AsyncReactor" */,
+				512B5F6A2B5D53DD00A2A3ED /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */,
 			);
 			productRefGroup = 7555FF7C242A565900829871 /* Products */;
 			projectDirPath = "";
@@ -216,9 +248,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				516D69932B5C18D900908D6C /* LoginView.swift in Sources */,
+				512B5F762B5D54BA00A2A3ED /* BookDataRow.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				516D699B2B5C1A4E00908D6C /* LoginReactor.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				512B5F712B5D542A00A2A3ED /* SearchView.swift in Sources */,
+				512B5F732B5D544400A2A3ED /* SearchReactor.swift in Sources */,
 				516D69962B5C18F000908D6C /* StartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +459,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		512B5F6A2B5D53DD00A2A3ED /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rickclephas/KMP-NativeCoroutines.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		516D69972B5C191C00908D6C /* XCRemoteSwiftPackageReference "AsyncReactor" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/diamirio/AsyncReactor";
@@ -435,6 +478,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		512B5F6B2B5D53DD00A2A3ED /* KMPNativeCoroutinesAsync */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 512B5F6A2B5D53DD00A2A3ED /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
+			productName = KMPNativeCoroutinesAsync;
+		};
+		512B5F6D2B5D53DD00A2A3ED /* KMPNativeCoroutinesCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 512B5F6A2B5D53DD00A2A3ED /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
+			productName = KMPNativeCoroutinesCore;
+		};
 		516D69982B5C191C00908D6C /* AsyncReactor */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 516D69972B5C191C00908D6C /* XCRemoteSwiftPackageReference "AsyncReactor" */;

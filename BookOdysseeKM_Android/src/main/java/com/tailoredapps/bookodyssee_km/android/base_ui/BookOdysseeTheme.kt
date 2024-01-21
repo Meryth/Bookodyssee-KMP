@@ -22,7 +22,8 @@ fun BookOdysseeTheme(
         primary = Color(0xFFB99976),
         secondary = Color(0xFF331D00),
         tertiary = Color(0xFF735C00),
-        onSurfaceVariant = Color(0xFF987554)
+        onSurfaceVariant = Color(0xFF987554),
+        outline = Color(0xFF71787D)
     )
 
     val typography = Typography(

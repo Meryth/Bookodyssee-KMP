@@ -52,6 +52,8 @@ dependencies {
 
     implementation(libs.control.core)
 
+    implementation(libs.coil.compose)
+
     api(libs.compose.foundation)
     api(libs.androidx.animation)
 

@@ -1,6 +1,7 @@
 package com.tailoredapps.bookodyssee_km.android
 
 import com.tailoredapps.bookodyssee_km.android.login.loginModule
+import com.tailoredapps.bookodyssee_km.android.search.searchModule
 import org.koin.dsl.module
 
 internal val appModule = module {
@@ -10,5 +11,6 @@ internal val appModule = module {
 
 internal val appModules = listOf(
     appModule,
-    loginModule
+    loginModule,
+    searchModule
 )

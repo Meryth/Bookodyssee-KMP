@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.tailoredapps.bookodyssee_km.android.base_ui.BookOdysseeTheme
 import com.tailoredapps.bookodyssee_km.android.login.LoginScreen
+import com.tailoredapps.bookodyssee_km.android.search.SearchScreen
 import com.tailoredapps.bookodyssee_km.android.start.StartScreen
 import moe.tlaster.precompose.PreComposeApp
 import moe.tlaster.precompose.navigation.NavHost
@@ -45,7 +46,7 @@ class MainActivity : ComponentActivity() {
                             navigator = navigator,
                             // Navigation transition for the scenes in this NavHost, this is optional
                             navTransition = NavTransition(),
-                            initialRoute = "/start",
+                            initialRoute = "/search",
                         ) {
                             // Define a scene to the navigation graph
                             scene(
@@ -59,9 +60,14 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
                             scene(
-                                route = "/login",
+                                route = "/login"
                             ) {
                                 LoginScreen(onLoginSuccess = { })
+                            }
+                            scene(
+                                route = "/search"
+                            ) {
+                                SearchScreen()
                             }
                         }
                     }

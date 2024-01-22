@@ -9,6 +9,8 @@ import com.tailoredapps.bookodyssee_km.android.navigation.destinations.ROUTE_STA
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.loginScreen
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.mainScreen
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.navigateToLogin
+import com.tailoredapps.bookodyssee_km.android.navigation.destinations.navigateToRegistration
+import com.tailoredapps.bookodyssee_km.android.navigation.destinations.registrationScreen
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.searchScreen
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.startScreen
 
@@ -55,9 +57,10 @@ fun NavHostController.MainNavHost() {
         navigation(startDestination = ROUTE_START, route = NavGraphs.Start.route) {
             startScreen(
                 onLoginClick = this@MainNavHost::navigateToLogin,
-                onRegisterClick = { /*this@MainNavHost::navigateToRegistration*/ }
+                onRegisterClick = this@MainNavHost::navigateToRegistration
             )
             loginScreen(onLoginSuccess = { /*this@MainNavHost::navigateToHome*/ })
+            registrationScreen(onRegistrationSuccess = {/*this@MainNavHost::navigateToHome*/ })
             searchScreen(onBookClick = { /*this@MainNavHost::navigateToBook*/ })
         }
     }

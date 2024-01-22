@@ -14,9 +14,11 @@ ktorClientContentNegotiation = "2.3.7"
 ktorClientCore = "2.3.7"
 navigationCompose = "2.7.6"
 precompose = "1.5.10"
+runtime = "1.5.5"
 timber = "5.0.1"
 
 [libraries]
+android-driver = { module = "com.squareup.sqldelight:android-driver", version.ref = "runtime" }
 androidx-animation = { module = "androidx.compose.animation:animation", version.ref = "animation" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
@@ -37,9 +39,11 @@ ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negoti
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktorClientCore" }
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktorClientContentNegotiation" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktorClientCore" }
+native-driver = { module = "com.squareup.sqldelight:native-driver", version.ref = "runtime" }
 precompose = { module = "moe.tlaster:precompose", version.ref = "precompose" }
 precompose-koin = { module = "moe.tlaster:precompose-koin", version.ref = "precompose" }
 precompose-viewmodel = { module = "moe.tlaster:precompose-viewmodel", version.ref = "precompose" }
+runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "runtime" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 [plugins]

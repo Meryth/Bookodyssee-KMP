@@ -6,9 +6,7 @@ struct ContentView: View {
 	//let greet = Greeting().greet()
 
 	var body: some View {
-        ReactorView(SearchReactor()) {
-            SearchView()
-        }
+        StartView()
 	}
 }
 

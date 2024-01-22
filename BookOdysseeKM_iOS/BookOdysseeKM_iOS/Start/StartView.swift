@@ -51,12 +51,9 @@ struct StartView: View {
                 
                 
                 NavigationLink(
-                    destination: ReactorView(LoginReactor()) {
-                        LoginView()
+                    destination: ReactorView(RegistrationReactor()) {
+                        RegistrationView()
                     }
-//                    destination: ReactorView(RegistrationReactor(moc: viewContext)) {
-//                        RegistrationView()
-//                    }
                 ) {
                     Text("Register")
                         .padding(15)

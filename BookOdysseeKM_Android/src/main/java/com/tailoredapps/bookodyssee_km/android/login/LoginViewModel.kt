@@ -3,11 +3,13 @@ package com.tailoredapps.bookodyssee_km.android.login
 import androidx.lifecycle.viewModelScope
 import at.florianschuster.control.EffectController
 import at.florianschuster.control.createEffectController
+import com.tailoredapps.bookodyssee_km.UserSDK
 import com.tailoredapps.bookodyssee_km.android.control.EffectControllerViewModel
 import kotlinx.coroutines.flow.flow
+import timber.log.Timber
 
 class LoginViewModel(
-//    private val dataRepo: DataRepo,
+    private val sdk: UserSDK
 //    private val sharedPrefs: SharedPrefs
 ) : EffectControllerViewModel<LoginViewModel.Action, LoginViewModel.State, LoginViewModel.Effect>() {
     sealed class Action {
@@ -47,6 +49,19 @@ class LoginViewModel(
 
                     is Action.OnLoginClick -> flow {
                         emit(Mutation.ShowErrorMessage(false))
+
+                        runCatching {
+                            sdk.getUser(currentState.username)
+                        }.onSuccess { user ->
+                            Timber.d("aaa user is $user")
+
+                            if (user != null && user.password == currentState.password) {
+                                Timber.d("omg omg omg omg")
+                            }
+                        }.onFailure {
+                            Timber.d("why you like this $it")
+                        }
+
                     }
                 }
             },

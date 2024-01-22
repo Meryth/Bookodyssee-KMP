@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
 
     kotlin("plugin.serialization") version "1.9.21"
+    id("com.squareup.sqldelight").version("1.5.5")
 
     id("com.google.devtools.ksp")
     id("com.rickclephas.kmp.nativecoroutines")
@@ -39,15 +40,18 @@ kotlin {
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.runtime)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
+            implementation(libs.android.driver)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+            implementation(libs.native.driver)
         }
     }
 }
@@ -62,4 +66,10 @@ android {
 
 kotlin.sourceSets.all {
     languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
+}
+
+sqldelight {
+    database("BookOdysseeDb") {
+        packageName = "com.tailoredapps.bookodyssee_km.cache"
+    }
 }

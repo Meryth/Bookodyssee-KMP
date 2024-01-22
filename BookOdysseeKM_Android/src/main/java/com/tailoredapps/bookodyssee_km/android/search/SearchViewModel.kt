@@ -9,6 +9,7 @@ import com.tailoredapps.bookodyssee_km.android.control.ControllerViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
+import timber.log.Timber
 
 class SearchViewModel(
 
@@ -36,7 +37,7 @@ class SearchViewModel(
                     is Action.OnQueryChange -> flowOf(Mutation.SetQuery(action.query))
                     is Action.OnSearchClick -> flow {
                         DataRepo().searchBooks().catch {
-                            //TODO: add error handling here
+                            Timber.e("Error while searching for books: $it")
                         }.collect { remoteBookList ->
                             emit(Mutation.SetResultList(remoteBookList.items))
                         }

@@ -49,6 +49,7 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
+    implementation(libs.timber)
 
     implementation(libs.control.core)
 

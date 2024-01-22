@@ -9,7 +9,7 @@ class DataRepo {
     private val bookComponent = BookComponent()
 
     @NativeCoroutines
-    fun searchBooks(): Flow<RemoteBookList> = flow {
-        emit(bookComponent.findBookBySearchTerm("1984"))
+    fun searchBooks(searchTerm: String): Flow<RemoteBookList> = flow {
+        emit(bookComponent.findBookBySearchTerm(searchTerm))
     }
 }

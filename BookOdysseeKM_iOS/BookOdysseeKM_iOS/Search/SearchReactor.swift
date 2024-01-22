@@ -50,29 +50,20 @@ class SearchReactor: AsyncReactor {
         switch action {
         case .onSearchClick:
             
+            if(state.query.isEmpty) {
+                print("query is empty!")
+                return
+            }
+            
             do {
-                let sequence = asyncSequence(for: DataRepo().searchBooks())
+                let sequence = asyncSequence(for: DataRepo().searchBooks(searchTerm: state.query))
                 for try await result in sequence {
                     state.searchResult = result.items
                     print(result.items)
                 }
             }  catch {
-                print("whoopsie")
                 print(error)
             }
-            
-          print("")
-            
-//            if(state.query.isEmpty) {
-//                print("query is empty!")
-//                return
-//            }
-//
-//            do {
-//                state.searchResult = try await apiClient.getBooksBySearchTerm(endpoint: .searchBooks(query: state.query)).items
-//            } catch {
-//                print("Error when fetching books!")
-//            }
         }
     }
 }

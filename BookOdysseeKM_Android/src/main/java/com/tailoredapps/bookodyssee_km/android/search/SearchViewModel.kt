@@ -6,6 +6,7 @@ import at.florianschuster.control.createController
 import com.tailoredapps.bookodyssee_km.BookItem
 import com.tailoredapps.bookodyssee_km.DataRepo
 import com.tailoredapps.bookodyssee_km.android.control.ControllerViewModel
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 
@@ -34,9 +35,9 @@ class SearchViewModel(
                 when (action) {
                     is Action.OnQueryChange -> flowOf(Mutation.SetQuery(action.query))
                     is Action.OnSearchClick -> flow {
-                        DataRepo().searchBooks().collect { remoteBookList ->
-                            //TODO: look into error handling cause........
-                            // maybe emit null? https://stackoverflow.com/a/69584418
+                        DataRepo().searchBooks().catch {
+                            //TODO: add error handling here
+                        }.collect { remoteBookList ->
                             emit(Mutation.SetResultList(remoteBookList.items))
                         }
                     }

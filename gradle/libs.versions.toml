@@ -4,18 +4,20 @@ animation = "1.5.4"
 coilCompose = "2.5.0"
 controlCore = "1.2.0"
 koinCore = "3.5.0"
-kotlin = "1.9.20"
+kotlin = "1.9.22"
 compose = "1.5.4"
-compose-compiler = "1.5.4"
+compose-compiler = "1.5.8"
 compose-material3 = "1.1.2"
 androidx-activityCompose = "1.8.0"
 kotlinxCoroutinesCore = "1.7.3"
 ktorClientContentNegotiation = "2.3.7"
 ktorClientCore = "2.3.7"
+navigationCompose = "2.7.6"
 precompose = "1.5.10"
 
 [libraries]
 androidx-animation = { module = "androidx.compose.animation:animation", version.ref = "animation" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 control-core = { module = "at.florianschuster.control:control-core", version.ref = "controlCore" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinCore" }

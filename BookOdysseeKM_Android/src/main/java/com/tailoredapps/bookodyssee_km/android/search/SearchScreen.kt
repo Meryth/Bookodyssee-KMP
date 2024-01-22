@@ -33,6 +33,7 @@ import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun SearchScreen(
+    onBookClick: (String) -> Unit,
     viewModel: SearchViewModel = getViewModel(),
 ) {
     val state by viewModel.state.collectAsState()
@@ -42,7 +43,7 @@ fun SearchScreen(
         searchResult = state.searchResult,
         onQueryChange = { viewModel.dispatch(SearchViewModel.Action.OnQueryChange(it)) },
         onSearchClick = { viewModel.dispatch(SearchViewModel.Action.OnSearchClick(it)) },
-        onBookClick = { }
+        onBookClick = onBookClick
     )
 }
 

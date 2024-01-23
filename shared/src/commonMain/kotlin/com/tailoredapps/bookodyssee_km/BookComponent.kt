@@ -5,6 +5,7 @@ import io.ktor.client.call.body
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.get
 import io.ktor.client.request.header
+import io.ktor.http.appendPathSegments
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
@@ -30,4 +31,14 @@ class BookComponent {
             }
         }.body<RemoteBookList>()
     }
+
+    suspend fun fetchBookDataById(id: String): BookItem {
+        return httpClient.get("$BASE_URL/books/v1/volumes") {
+            url {
+                header("X-goog-api-key", TEMP_API_KEY)
+                appendPathSegments(id)
+            }
+        }.body<BookItem>()
+    }
+
 }

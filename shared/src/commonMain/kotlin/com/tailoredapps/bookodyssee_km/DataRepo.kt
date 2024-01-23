@@ -12,4 +12,9 @@ class DataRepo {
     fun searchBooks(searchTerm: String): Flow<RemoteBookList> = flow {
         emit(bookComponent.findBookBySearchTerm(searchTerm))
     }
+
+    @NativeCoroutines
+    fun getBookById(id: String): Flow<BookItem> = flow {
+        emit(bookComponent.fetchBookDataById(id))
+    }
 }

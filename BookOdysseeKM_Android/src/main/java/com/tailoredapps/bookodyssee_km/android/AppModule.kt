@@ -1,6 +1,7 @@
 package com.tailoredapps.bookodyssee_km.android
 
 import com.tailoredapps.bookodyssee_km.UserSDK
+import com.tailoredapps.bookodyssee_km.android.book.bookModule
 import com.tailoredapps.bookodyssee_km.android.login.loginModule
 import com.tailoredapps.bookodyssee_km.android.registration.registrationModule
 import com.tailoredapps.bookodyssee_km.android.search.searchModule
@@ -18,6 +19,7 @@ internal val appModule = module {
 internal val appModules = listOf(
     appModule,
     loginModule,
-    searchModule,
     registrationModule,
+    searchModule,
+    bookModule,
 )

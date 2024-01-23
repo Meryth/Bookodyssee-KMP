@@ -3,6 +3,8 @@ package com.tailoredapps.bookodyssee_km.android.registration
 import androidx.lifecycle.viewModelScope
 import at.florianschuster.control.EffectController
 import at.florianschuster.control.createEffectController
+import com.russhwolf.settings.Settings
+import com.russhwolf.settings.set
 import com.tailoredapps.bookodyssee_km.BookOdysseeSDK
 import com.tailoredapps.bookodyssee_km.android.control.EffectControllerViewModel
 import kotlinx.coroutines.flow.flow
@@ -10,7 +12,8 @@ import kotlinx.coroutines.flow.flowOf
 import timber.log.Timber
 
 class RegistrationViewModel(
-    private val bookOdysseeSDK: BookOdysseeSDK
+    private val bookOdysseeSDK: BookOdysseeSDK,
+    private val settings: Settings
 ) : EffectControllerViewModel<RegistrationViewModel.Action, RegistrationViewModel.State, RegistrationViewModel.Effect>() {
     sealed class Action {
         data object OnRegisterClick : Action()
@@ -67,6 +70,7 @@ class RegistrationViewModel(
                                             password = currentState.password
                                         )
                                     }.onSuccess {
+                                        settings.set("test", currentState.username)
                                         Timber.d("User saved to DB")
                                     }.onFailure {
                                         Timber.d("Error when saving user to DB: $it")

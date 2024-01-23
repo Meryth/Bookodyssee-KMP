@@ -13,12 +13,14 @@ let Config = AppConfig.prod
 
 struct AppConfig {
     let bookOdysseeSDK: BookOdysseeSDK
+    let settings: Multiplatform_settingsSettings
 }
 
 extension AppConfig {
     static var prod: AppConfig {
         .init(
-            bookOdysseeSDK: BookOdysseeSDK(databaseDriverFactory: DatabaseDriverFactory())
+            bookOdysseeSDK: BookOdysseeSDK(databaseDriverFactory: DatabaseDriverFactory()),
+            settings: SettingsInstance().createSettings()
         )
     }
 }

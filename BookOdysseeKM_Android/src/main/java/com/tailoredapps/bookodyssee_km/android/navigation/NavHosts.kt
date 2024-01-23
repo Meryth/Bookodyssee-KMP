@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.navigation
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.ROUTE_MAIN
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.ROUTE_SEARCH
+import com.tailoredapps.bookodyssee_km.android.navigation.destinations.ROUTE_START
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.bookScreen
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.loginScreen
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.mainScreen
@@ -56,7 +57,7 @@ fun NavHostController.MainNavHost() {
         route = NavHosts.Main.route,
         startDestination = NavGraphs.Start.route
     ) {
-        navigation(startDestination = ROUTE_SEARCH, route = NavGraphs.Start.route) {
+        navigation(startDestination = ROUTE_START, route = NavGraphs.Start.route) {
             startScreen(
                 onLoginClick = this@MainNavHost::navigateToLogin,
                 onRegisterClick = this@MainNavHost::navigateToRegistration

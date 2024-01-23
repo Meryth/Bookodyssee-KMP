@@ -1,6 +1,7 @@
 package com.tailoredapps.bookodyssee_km.android
 
 import com.tailoredapps.bookodyssee_km.BookOdysseeSDK
+import com.tailoredapps.bookodyssee_km.SettingsInstance
 import com.tailoredapps.bookodyssee_km.android.book.bookModule
 import com.tailoredapps.bookodyssee_km.android.login.loginModule
 import com.tailoredapps.bookodyssee_km.android.registration.registrationModule
@@ -11,8 +12,10 @@ import org.koin.dsl.module
 
 internal val appModule = module {
     single { BookOdysseeSDK(DatabaseDriverFactory(androidContext())) }
-
-    //TODO: will probably need for shared prefs if there is no alternative from KMP
+    single {
+        val context = androidContext()
+        SettingsInstance(context).createSettings()
+    }
 }
 
 

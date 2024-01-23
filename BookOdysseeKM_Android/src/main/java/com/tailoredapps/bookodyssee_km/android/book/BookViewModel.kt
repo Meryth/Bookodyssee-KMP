@@ -3,9 +3,11 @@ package com.tailoredapps.bookodyssee_km.android.book
 import androidx.lifecycle.viewModelScope
 import at.florianschuster.control.Controller
 import at.florianschuster.control.createController
+import com.russhwolf.settings.Settings
 import com.tailoredapps.bookodyssee_km.BookItem
 import com.tailoredapps.bookodyssee_km.BookOdysseeSDK
 import com.tailoredapps.bookodyssee_km.DataRepo
+import com.tailoredapps.bookodyssee_km.SettingsInstance
 import com.tailoredapps.bookodyssee_km.android.control.ControllerViewModel
 import com.tailoredapps.bookodyssee_km.db.LocalBook
 import com.tailoredapps.bookodyssee_km.db.ReadingState
@@ -18,7 +20,7 @@ import timber.log.Timber
 
 class BookViewModel(
     private val bookOdysseeSDK: BookOdysseeSDK,
-    bookId: String
+    bookId: String,
 ) : ControllerViewModel<BookViewModel.Action, BookViewModel.State>() {
     sealed class Action {
         data object LoadBookData : Action()

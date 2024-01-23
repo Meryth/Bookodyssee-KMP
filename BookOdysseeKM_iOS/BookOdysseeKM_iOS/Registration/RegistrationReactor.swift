@@ -14,6 +14,7 @@ class RegistrationReactor: AsyncReactor {
     
     //    var moc: NSManagedObjectContext
     //    let defaults = UserDefaults.standard
+    let settings : Multiplatform_settingsSettings
     
     enum Action {
         case onRegisterClick
@@ -39,10 +40,12 @@ class RegistrationReactor: AsyncReactor {
     @MainActor
     init(
         state: State = State(),
-        bookOdysseeSDK: BookOdysseeSDK = Config.bookOdysseeSDK
+        bookOdysseeSDK: BookOdysseeSDK = Config.bookOdysseeSDK,
+        settings: Multiplatform_settingsSettings = Config.settings
     ) {
         self.state = state
         self.bookOdysseeSDK = bookOdysseeSDK
+        self.settings = settings
     }
     
     func action(_ action: SyncAction) {
@@ -62,6 +65,11 @@ class RegistrationReactor: AsyncReactor {
             do {
                 
                 let savedUser = try bookOdysseeSDK.getUser(username: state.username)
+                
+                settings.putString(key: "test", value: state.username)
+                let test = settings.getStringOrNull(key: "test")
+                
+                print("omggg \(test)")
                 
                 if savedUser == nil {
                     try bookOdysseeSDK.createUser(username: state.username, password: state.password)

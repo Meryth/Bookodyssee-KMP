@@ -53,13 +53,11 @@ class LoginViewModel(
                         runCatching {
                             userSDK.getUser(currentState.username)
                         }.onSuccess { user ->
-                            Timber.d("aaa user is $user")
-
                             if (user != null && user.password == currentState.password) {
-                                Timber.d("omg omg omg omg")
+                                emitEffect(Effect.IsSuccess)
                             }
                         }.onFailure {
-                            Timber.d("why you like this $it")
+                            Timber.d("Error while fetching user from DB: $it")
                         }
 
                     }

@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.flowOf
 import timber.log.Timber
 
 class RegistrationViewModel(
-    private val sdk: UserSDK
+    private val userSDK: UserSDK
 ) : EffectControllerViewModel<RegistrationViewModel.Action, RegistrationViewModel.State, RegistrationViewModel.Effect>() {
     sealed class Action {
         data object OnRegisterClick : Action()
@@ -56,22 +56,25 @@ class RegistrationViewModel(
                             emit(Mutation.ShowErrorMessage(isError = false))
 
                             runCatching {
-                                sdk.createUser(
-                                    username = currentState.username,
-                                    password = currentState.password
-                                )
-                            }.onSuccess {
-                                Timber.d("aaa omg it worked")
+                                userSDK.getUser(username = currentState.username)
+                            }.onSuccess { user ->
+                                if (user != null) {
+                                    Timber.d("User already exists!")
+                                } else {
+                                    runCatching {
+                                        userSDK.createUser(
+                                            username = currentState.username,
+                                            password = currentState.password
+                                        )
+                                    }.onSuccess {
+                                        Timber.d("User saved to DB")
+                                    }.onFailure {
+                                        Timber.d("Error when saving user to DB: $it")
+                                    }
+                                }
                             }.onFailure {
-                                Timber.d("aaa of course it didn't work")
+                                Timber.d("Error when fetching user")
                             }
-
-                            /* dataRepo.insertUser(
-                                 user = User(
-                                     username = currentState.username,
-                                     password = currentState.password
-                                 )
-                             )*/
                             emitEffect(Effect.IsSuccess)
                         }
                     }

@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.flow
 import timber.log.Timber
 
 class LoginViewModel(
-    private val sdk: UserSDK
+    private val userSDK: UserSDK
 //    private val sharedPrefs: SharedPrefs
 ) : EffectControllerViewModel<LoginViewModel.Action, LoginViewModel.State, LoginViewModel.Effect>() {
     sealed class Action {
@@ -51,7 +51,7 @@ class LoginViewModel(
                         emit(Mutation.ShowErrorMessage(false))
 
                         runCatching {
-                            sdk.getUser(currentState.username)
+                            userSDK.getUser(currentState.username)
                         }.onSuccess { user ->
                             Timber.d("aaa user is $user")
 

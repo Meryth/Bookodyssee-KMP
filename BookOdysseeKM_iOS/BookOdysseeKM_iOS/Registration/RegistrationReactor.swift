@@ -12,7 +12,6 @@ import shared
 
 class RegistrationReactor: AsyncReactor {
     
-    let sdk = UserSDK(databaseDriverFactory: DatabaseDriverFactory())
     //    var moc: NSManagedObjectContext
     //    let defaults = UserDefaults.standard
     
@@ -35,11 +34,15 @@ class RegistrationReactor: AsyncReactor {
     @Published
     private(set) var state: State
     
+    private let userSDK: UserSDK
+    
     @MainActor
     init(
-        state: State = State()
+        state: State = State(),
+        userSDK: UserSDK = Config.userSDK
     ) {
         self.state = state
+        self.userSDK = userSDK
     }
     
     func action(_ action: SyncAction) {
@@ -57,10 +60,10 @@ class RegistrationReactor: AsyncReactor {
         switch action {
         case .onRegisterClick:
             
-            let savedUser = sdk.getUser(username: state.username)
+            let savedUser = userSDK.getUser(username: state.username)
             
             if savedUser == nil {
-                sdk.createUser(username: state.username, password: state.password)
+                userSDK.createUser(username: state.username, password: state.password)
             } else {
                 print("User already exists!")
             }

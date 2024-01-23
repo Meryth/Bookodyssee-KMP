@@ -3,14 +3,14 @@ package com.tailoredapps.bookodyssee_km.android.registration
 import androidx.lifecycle.viewModelScope
 import at.florianschuster.control.EffectController
 import at.florianschuster.control.createEffectController
-import com.tailoredapps.bookodyssee_km.UserSDK
+import com.tailoredapps.bookodyssee_km.BookOdysseeSDK
 import com.tailoredapps.bookodyssee_km.android.control.EffectControllerViewModel
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import timber.log.Timber
 
 class RegistrationViewModel(
-    private val userSDK: UserSDK
+    private val bookOdysseeSDK: BookOdysseeSDK
 ) : EffectControllerViewModel<RegistrationViewModel.Action, RegistrationViewModel.State, RegistrationViewModel.Effect>() {
     sealed class Action {
         data object OnRegisterClick : Action()
@@ -56,13 +56,13 @@ class RegistrationViewModel(
                             emit(Mutation.ShowErrorMessage(isError = false))
 
                             runCatching {
-                                userSDK.getUser(username = currentState.username)
+                                bookOdysseeSDK.getUser(username = currentState.username)
                             }.onSuccess { user ->
                                 if (user != null) {
                                     Timber.d("User already exists!")
                                 } else {
                                     runCatching {
-                                        userSDK.createUser(
+                                        bookOdysseeSDK.createUser(
                                             username = currentState.username,
                                             password = currentState.password
                                         )

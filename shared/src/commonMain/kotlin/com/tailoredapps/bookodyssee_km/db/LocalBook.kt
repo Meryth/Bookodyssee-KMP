@@ -11,13 +11,13 @@ enum class ReadingState(val state: String) {
 
 @Serializable
 data class LocalBook(
-    val userId: Int,
+    val userId: Long,
     val bookId: String,
     val title: String? = null,
     val authors: List<String>? = null,
     val publisher: String? = null,
     val publishedDate: String,
-    val pageCount: Int? = null,
+    val pageCount: Long? = null,
     val imageLink: String? = null,
     val readingState: String = ReadingState.TO_READ.state
 )

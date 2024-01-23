@@ -3,13 +3,13 @@ package com.tailoredapps.bookodyssee_km.android.login
 import androidx.lifecycle.viewModelScope
 import at.florianschuster.control.EffectController
 import at.florianschuster.control.createEffectController
-import com.tailoredapps.bookodyssee_km.UserSDK
+import com.tailoredapps.bookodyssee_km.BookOdysseeSDK
 import com.tailoredapps.bookodyssee_km.android.control.EffectControllerViewModel
 import kotlinx.coroutines.flow.flow
 import timber.log.Timber
 
 class LoginViewModel(
-    private val userSDK: UserSDK
+    private val bookOdysseeSDK: BookOdysseeSDK
 //    private val sharedPrefs: SharedPrefs
 ) : EffectControllerViewModel<LoginViewModel.Action, LoginViewModel.State, LoginViewModel.Effect>() {
     sealed class Action {
@@ -51,7 +51,7 @@ class LoginViewModel(
                         emit(Mutation.ShowErrorMessage(false))
 
                         runCatching {
-                            userSDK.getUser(currentState.username)
+                            bookOdysseeSDK.getUser(currentState.username)
                         }.onSuccess { user ->
                             if (user != null && user.password == currentState.password) {
                                 emitEffect(Effect.IsSuccess)

@@ -68,9 +68,9 @@ fun BookScreen(
 fun BookView(
     bookVolume: VolumeInfo,
     scrollState: ScrollState,
-    readingState: ReadingState,
+    readingState: String,
     onAddToListClick: () -> Unit,
-    onUpdateReadingState: (ReadingState) -> Unit,
+    onUpdateReadingState: (String) -> Unit,
     onRemoveFromListClick: () -> Unit
 ) {
     Scaffold(
@@ -143,7 +143,7 @@ fun BookView(
 
             Spacer(modifier = Modifier.weight(1f))
 
-            if (readingState == ReadingState.NOT_ADDED) {
+            if (readingState == ReadingState.NOT_ADDED.state) {
                 PrimaryButton(
                     btnText = stringResource(R.string.btn_add_to_list),
                     modifier = Modifier
@@ -152,15 +152,15 @@ fun BookView(
                     onClick = onAddToListClick
                 )
             } else {
-                if (readingState != ReadingState.FINISHED) {
+                if (readingState != ReadingState.FINISHED.state) {
 
-                    if (readingState != ReadingState.CURRENTLY_READING) {
+                    if (readingState != ReadingState.CURRENTLY_READING.state) {
                         PrimaryButton(
                             btnText = stringResource(R.string.btn_start_reading),
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(bottom = 24.dp),
-                            onClick = { onUpdateReadingState(ReadingState.CURRENTLY_READING) }
+                            onClick = { onUpdateReadingState(ReadingState.CURRENTLY_READING.state) }
                         )
                     }
 
@@ -169,7 +169,7 @@ fun BookView(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(bottom = 24.dp),
-                        onClick = { onUpdateReadingState(ReadingState.FINISHED) }
+                        onClick = { onUpdateReadingState(ReadingState.FINISHED.state) }
                     )
                 }
 
@@ -199,7 +199,7 @@ fun BookViewPreview() {
             imageLinks = BookImageLinks("asd")
         ),
         scrollState = ScrollState(0),
-        readingState = ReadingState.FINISHED,
+        readingState = ReadingState.FINISHED.state,
         onAddToListClick = {},
         onUpdateReadingState = {},
         onRemoveFromListClick = {}

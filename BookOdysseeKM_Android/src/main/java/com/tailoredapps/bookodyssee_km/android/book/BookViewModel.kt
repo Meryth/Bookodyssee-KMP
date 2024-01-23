@@ -4,8 +4,10 @@ import androidx.lifecycle.viewModelScope
 import at.florianschuster.control.Controller
 import at.florianschuster.control.createController
 import com.tailoredapps.bookodyssee_km.BookItem
+import com.tailoredapps.bookodyssee_km.BookOdysseeSDK
 import com.tailoredapps.bookodyssee_km.DataRepo
 import com.tailoredapps.bookodyssee_km.android.control.ControllerViewModel
+import com.tailoredapps.bookodyssee_km.db.LocalBook
 import com.tailoredapps.bookodyssee_km.db.ReadingState
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -14,23 +16,24 @@ import kotlinx.coroutines.flow.merge
 import timber.log.Timber
 
 class BookViewModel(
+    private val bookOdysseeSDK: BookOdysseeSDK,
     bookId: String
 ) : ControllerViewModel<BookViewModel.Action, BookViewModel.State>() {
     sealed class Action {
         data object LoadBookData : Action()
         data object AddBookToReadingList : Action()
         data object RemoveBookFromReadingList : Action()
-        data class ChangeReadingState(val readingState: ReadingState) : Action()
+        data class ChangeReadingState(val readingState: String) : Action()
     }
 
     sealed class Mutation {
         data class SetBookData(val bookItem: BookItem) : Mutation()
-        data class SetReadingState(val readingState: ReadingState) : Mutation()
+        data class SetReadingState(val readingState: String) : Mutation()
     }
 
     data class State(
         val bookItem: BookItem? = null,
-        val readingState: ReadingState = ReadingState.NOT_ADDED
+        val readingState: String = ReadingState.NOT_ADDED.state
     )
 
     override val controller: Controller<Action, State> =
@@ -51,73 +54,68 @@ class BookViewModel(
                             emit(Mutation.SetBookData(bookItem = bookItem))
                         }
 
-
-//                        runCatching {
-//                            dataRepo.getBookById(bookId)
-//                        }.onSuccess { bookItem ->
-//                            emit(Mutation.SetBookData(bookItem = bookItem))
-//                        }.onFailure {
-//                            Timber.e("Error when retrieving book information $it")
-//                        }
-
-//                        runCatching {
-//                            dataRepo.getBookByUser(userId = sharedPrefs.userId, bookId = bookId)
-//                        }.onSuccess { book ->
-//                            if (book != null) {
-//                                emit(Mutation.SetReadingState(book.readingState))
-//                            }
-//                        }.onFailure {
-//                            Timber.e("Error when checking book $it")
-//                        }
+                        runCatching {
+                            bookOdysseeSDK.getBook(userId = 0, bookId = bookId)
+                        }.onSuccess { book ->
+                            Timber.d("aaa book is $book")
+                            if (book != null) {
+                                emit(Mutation.SetReadingState(book.readingState))
+                            }
+                        }.onFailure {
+                            Timber.e("Error when checking book $it")
+                        }
                     }
 
                     is Action.AddBookToReadingList -> flow {
-//                        runCatching {
-//                            val book = currentState.bookItem?.volumeInfo
-//                            if (book != null) {
-//                                dataRepo.insertBook(
-//                                    book = LocalBook(
-//                                        userId = sharedPrefs.userId,
-//                                        bookId = bookId,
-//                                        authors = book.authors,
-//                                        title = book.title,
-//                                        publisher = book.publisher,
-//                                        publishedDate = book.publishedDate,
-//                                        pageCount = book.pageCount,
-//                                        imageLink = book.imageLinks?.thumbnail.orEmpty(),
-//                                        readingState = ReadingState.TO_READ
-//                                    )
-//                                )
-//                            }
-//                        }.onSuccess {
-//                            emit(Mutation.SetReadingState(ReadingState.TO_READ))
-//                        }.onFailure {
-//                            Timber.e("Error: Book could not be added $it")
-//                        }
+                        runCatching {
+                            val book = currentState.bookItem?.volumeInfo
+                            if (book != null) {
+                                bookOdysseeSDK.addBookToReadingList(
+                                    book = LocalBook(
+                                        userId = 0,
+                                        bookId = bookId,
+                                        authors = book.authors,
+                                        title = book.title,
+                                        publisher = book.publisher,
+                                        publishedDate = book.publishedDate,
+                                        pageCount = book.pageCount?.toLong(),
+                                        imageLink = book.imageLinks?.thumbnail.orEmpty(),
+                                        readingState = ReadingState.TO_READ.state
+                                    )
+                                )
+                            }
+                        }.onSuccess {
+                            emit(Mutation.SetReadingState(ReadingState.TO_READ.state))
+                        }.onFailure {
+                            Timber.e("Error: Book could not be added $it")
+                        }
                     }
 
                     is Action.ChangeReadingState -> flow {
-//                        runCatching {
-//                            dataRepo.updateBook(
-//                                userId = sharedPrefs.userId,
-//                                bookId = bookId,
-//                                readingState = action.readingState
-//                            )
-//                        }.onSuccess {
-//                            emit(Mutation.SetReadingState(action.readingState))
-//                        }.onFailure {
-//                            Timber.e("Error: Reading state of book could not be updated $it")
-//                        }
+                        runCatching {
+                            bookOdysseeSDK.updateReadingState(
+                                readingState = action.readingState,
+                                userId = 0,
+                                bookId = bookId
+                            )
+                        }.onSuccess {
+                            emit(Mutation.SetReadingState(action.readingState))
+                        }.onFailure {
+                            Timber.e("Error: Reading state of book could not be updated $it")
+                        }
                     }
 
                     is Action.RemoveBookFromReadingList -> flow {
-//                        runCatching {
-//                            dataRepo.deleteBook(userId = sharedPrefs.userId, bookId = bookId)
-//                        }.onSuccess {
-//                            emit(Mutation.SetReadingState(ReadingState.NOT_ADDED))
-//                        }.onFailure {
-//                            Timber.e("Error: Book could not be removed $it")
-//                        }
+                        runCatching {
+                            bookOdysseeSDK.removeBookFromReadingList(
+                                userId = 0,
+                                bookId = bookId
+                            )
+                        }.onSuccess {
+                            emit(Mutation.SetReadingState(ReadingState.NOT_ADDED.state))
+                        }.onFailure {
+                            Timber.e("Error: Book could not be removed $it")
+                        }
                     }
                 }
             },

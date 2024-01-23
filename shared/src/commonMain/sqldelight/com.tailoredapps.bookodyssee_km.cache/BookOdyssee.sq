@@ -1,7 +1,21 @@
+import kotlin.collections.List;
+
 CREATE TABLE User(
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     username TEXT,
     password TEXT
+);
+
+CREATE TABLE Book(
+    userId INTEGER,
+    bookId TEXT,
+    title TEXT,
+    authors TEXT AS List<String>,
+    publisher TEXT,
+    publishedDate TEXT,
+    pageCount INTEGER,
+    imageLink TEXT,
+    readingState TEXT
 );
 
 insertUser:
@@ -10,3 +24,16 @@ VALUES(?,?);
 
 selectUser:
 SELECT * FROM User WHERE username = ?;
+
+selectBook:
+SELECT * FROM Book WHERE userId = ? AND  bookId = ?;
+
+insertBook:
+INSERT INTO Book( userId, bookId, title, authors, publisher, publishedDate, pageCount, imageLink, readingState)
+VALUES(?,?,?,?,?,?,?,?,?);
+
+updateBook:
+UPDATE Book SET readingState = ? WHERE userId = ? AND bookId = ?;
+
+removeBook:
+DELETE FROM Book WHERE userId = ? AND bookId = ?;

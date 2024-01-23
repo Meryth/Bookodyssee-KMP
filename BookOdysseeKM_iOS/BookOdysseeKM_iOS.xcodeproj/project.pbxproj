@@ -19,6 +19,10 @@
 		516D69962B5C18F000908D6C /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D69952B5C18F000908D6C /* StartView.swift */; };
 		516D69992B5C191C00908D6C /* AsyncReactor in Frameworks */ = {isa = PBXBuildFile; productRef = 516D69982B5C191C00908D6C /* AsyncReactor */; };
 		516D699B2B5C1A4E00908D6C /* LoginReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D699A2B5C1A4E00908D6C /* LoginReactor.swift */; };
+		516DE8802B5FD1DB0041D994 /* DataRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516DE87F2B5FD1DB0041D994 /* DataRow.swift */; };
+		516DE8822B5FD1F30041D994 /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516DE8812B5FD1F30041D994 /* BookView.swift */; };
+		516DE8842B5FD2040041D994 /* BookReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516DE8832B5FD2040041D994 /* BookReactor.swift */; };
+		516DE8872B5FD31A0041D994 /* ReadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516DE8862B5FD31A0041D994 /* ReadingState.swift */; };
 		519AC29E2B5FBBAF009C1FD6 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519AC29D2B5FBBAF009C1FD6 /* AppConfig.swift */; };
 		51E0DE532B5EB21400403A8C /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E0DE522B5EB21400403A8C /* RegistrationView.swift */; };
 		51E0DE552B5EB24B00403A8C /* RegistrationReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E0DE542B5EB24B00403A8C /* RegistrationReactor.swift */; };
@@ -48,6 +52,10 @@
 		516D69922B5C18D900908D6C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		516D69952B5C18F000908D6C /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		516D699A2B5C1A4E00908D6C /* LoginReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReactor.swift; sourceTree = "<group>"; };
+		516DE87F2B5FD1DB0041D994 /* DataRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRow.swift; sourceTree = "<group>"; };
+		516DE8812B5FD1F30041D994 /* BookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookView.swift; sourceTree = "<group>"; };
+		516DE8832B5FD2040041D994 /* BookReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookReactor.swift; sourceTree = "<group>"; };
+		516DE8862B5FD31A0041D994 /* ReadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingState.swift; sourceTree = "<group>"; };
 		519AC29D2B5FBBAF009C1FD6 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		51E0DE522B5EB21400403A8C /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		51E0DE542B5EB24B00403A8C /* RegistrationReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationReactor.swift; sourceTree = "<group>"; };
@@ -112,6 +120,24 @@
 			path = Start;
 			sourceTree = "<group>";
 		};
+		516DE87C2B5FD18F0041D994 /* Book */ = {
+			isa = PBXGroup;
+			children = (
+				516DE87F2B5FD1DB0041D994 /* DataRow.swift */,
+				516DE8812B5FD1F30041D994 /* BookView.swift */,
+				516DE8832B5FD2040041D994 /* BookReactor.swift */,
+			);
+			path = Book;
+			sourceTree = "<group>";
+		};
+		516DE8852B5FD2EE0041D994 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				516DE8862B5FD31A0041D994 /* ReadingState.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
 		51E0DE512B5EB20900403A8C /* Registration */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +167,8 @@
 		7555FF7D242A565900829871 /* BookOdysseeKM_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				516DE8852B5FD2EE0041D994 /* Persistence */,
+				516DE87C2B5FD18F0041D994 /* Book */,
 				51E0DE512B5EB20900403A8C /* Registration */,
 				512B5F742B5D54AE00A2A3ED /* BaseItems */,
 				512B5F6F2B5D541E00A2A3ED /* Search */,
@@ -264,15 +292,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				516DE8872B5FD31A0041D994 /* ReadingState.swift in Sources */,
 				516D69932B5C18D900908D6C /* LoginView.swift in Sources */,
 				512B5F762B5D54BA00A2A3ED /* BookDataRow.swift in Sources */,
 				519AC29E2B5FBBAF009C1FD6 /* AppConfig.swift in Sources */,
+				516DE8822B5FD1F30041D994 /* BookView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				51E0DE532B5EB21400403A8C /* RegistrationView.swift in Sources */,
 				516D699B2B5C1A4E00908D6C /* LoginReactor.swift in Sources */,
+				516DE8802B5FD1DB0041D994 /* DataRow.swift in Sources */,
 				51E0DE552B5EB24B00403A8C /* RegistrationReactor.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				512B5F712B5D542A00A2A3ED /* SearchView.swift in Sources */,
+				516DE8842B5FD2040041D994 /* BookReactor.swift in Sources */,
 				512B5F732B5D544400A2A3ED /* SearchReactor.swift in Sources */,
 				516D69962B5C18F000908D6C /* StartView.swift in Sources */,
 			);

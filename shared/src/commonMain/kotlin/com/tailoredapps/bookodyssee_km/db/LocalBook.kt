@@ -2,8 +2,11 @@ package com.tailoredapps.bookodyssee_km.db
 
 import kotlinx.serialization.Serializable
 
-enum class ReadingState {
-    NOT_ADDED, TO_READ, CURRENTLY_READING, FINISHED
+enum class ReadingState(val state: String) {
+    NOT_ADDED("NOT_ADDED"),
+    TO_READ("TO_READ"),
+    CURRENTLY_READING("READING"),
+    FINISHED("FINISHED")
 }
 
 @Serializable
@@ -16,5 +19,5 @@ data class LocalBook(
     val publishedDate: String,
     val pageCount: Int? = null,
     val imageLink: String? = null,
-    val readingState: ReadingState = ReadingState.TO_READ
+    val readingState: String = ReadingState.TO_READ.state
 )

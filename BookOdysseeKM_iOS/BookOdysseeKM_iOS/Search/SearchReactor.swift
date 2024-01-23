@@ -12,8 +12,6 @@ import shared
 import KMPNativeCoroutinesAsync
 import KMPNativeCoroutinesCore
 
-//private let apiClient = ApiClient()
-
 class SearchReactor: AsyncReactor {
     enum Action {
         case onSearchClick

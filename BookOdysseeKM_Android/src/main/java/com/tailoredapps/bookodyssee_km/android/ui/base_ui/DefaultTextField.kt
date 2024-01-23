@@ -1,4 +1,4 @@
-package com.tailoredapps.bookodyssee_km.android.base_ui
+package com.tailoredapps.bookodyssee_km.android.ui.base_ui
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.OutlinedTextField

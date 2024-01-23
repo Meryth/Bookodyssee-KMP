@@ -2,10 +2,11 @@ package com.tailoredapps.bookodyssee_km.android
 
 import com.tailoredapps.bookodyssee_km.BookOdysseeSDK
 import com.tailoredapps.bookodyssee_km.SettingsInstance
-import com.tailoredapps.bookodyssee_km.android.book.bookModule
-import com.tailoredapps.bookodyssee_km.android.login.loginModule
-import com.tailoredapps.bookodyssee_km.android.registration.registrationModule
-import com.tailoredapps.bookodyssee_km.android.search.searchModule
+import com.tailoredapps.bookodyssee_km.android.ui.book.bookModule
+import com.tailoredapps.bookodyssee_km.android.ui.home.homeModule
+import com.tailoredapps.bookodyssee_km.android.ui.login.loginModule
+import com.tailoredapps.bookodyssee_km.android.ui.registration.registrationModule
+import com.tailoredapps.bookodyssee_km.android.ui.search.searchModule
 import com.tailoredapps.bookodyssee_km.cache.DatabaseDriverFactory
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -23,6 +24,7 @@ internal val appModules = listOf(
     appModule,
     loginModule,
     registrationModule,
+    homeModule,
     searchModule,
     bookModule,
 )

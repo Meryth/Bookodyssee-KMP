@@ -1,4 +1,4 @@
-package com.tailoredapps.bookodyssee_km.android.search
+package com.tailoredapps.bookodyssee_km.android.ui.search
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -28,7 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tailoredapps.bookodyssee_km.BookItem
 import com.tailoredapps.bookodyssee_km.android.R
-import com.tailoredapps.bookodyssee_km.android.base_ui.BookItem
+import com.tailoredapps.bookodyssee_km.android.ui.base_ui.BookItem
 import org.koin.androidx.compose.getViewModel
 
 @Composable

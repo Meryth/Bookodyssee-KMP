@@ -23,6 +23,9 @@ VALUES(?,?);
 selectUser:
 SELECT * FROM User WHERE username = ?;
 
+selectAllBooksByUser:
+SELECT * FROM Book WHERE userId = ?;
+
 selectBook:
 SELECT * FROM Book WHERE userId = ? AND  bookId = ?;
 

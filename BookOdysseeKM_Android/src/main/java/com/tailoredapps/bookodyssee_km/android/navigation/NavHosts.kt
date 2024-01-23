@@ -5,14 +5,16 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.navigation
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.ROUTE_MAIN
-import com.tailoredapps.bookodyssee_km.android.navigation.destinations.ROUTE_SEARCH
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.ROUTE_START
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.bookScreen
+import com.tailoredapps.bookodyssee_km.android.navigation.destinations.homeScreen
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.loginScreen
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.mainScreen
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.navigateToBook
+import com.tailoredapps.bookodyssee_km.android.navigation.destinations.navigateToHome
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.navigateToLogin
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.navigateToRegistration
+import com.tailoredapps.bookodyssee_km.android.navigation.destinations.navigateToSearch
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.registrationScreen
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.searchScreen
 import com.tailoredapps.bookodyssee_km.android.navigation.destinations.startScreen
@@ -60,10 +62,17 @@ fun NavHostController.MainNavHost() {
         navigation(startDestination = ROUTE_START, route = NavGraphs.Start.route) {
             startScreen(
                 onLoginClick = this@MainNavHost::navigateToLogin,
-                onRegisterClick = this@MainNavHost::navigateToRegistration
+                onRegisterClick = this@MainNavHost::navigateToSearch
             )
-            loginScreen(onLoginSuccess = { /*this@MainNavHost::navigateToHome*/ })
-            registrationScreen(onRegistrationSuccess = {/*this@MainNavHost::navigateToHome*/ })
+            loginScreen(onLoginSuccess = this@MainNavHost::navigateToHome)
+            registrationScreen(onRegistrationSuccess = this@MainNavHost::navigateToHome)
+            homeScreen(
+                navController = this@MainNavHost,
+                onBookItemClick = this@MainNavHost::navigateToBook,
+                onAddClick = this@MainNavHost::navigateToSearch,
+                onToReadClick = this@MainNavHost::navigateToHome,
+                onFinishedClick = {/*this@MainNavHost::navigateToFinished*/ }
+            )
             searchScreen(onBookClick = this@MainNavHost::navigateToBook)
             bookScreen()
         }

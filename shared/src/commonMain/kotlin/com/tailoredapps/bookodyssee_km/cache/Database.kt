@@ -1,34 +1,21 @@
 package com.tailoredapps.bookodyssee_km.cache
 
-import com.squareup.sqldelight.ColumnAdapter
 import com.tailoredapps.bookodyssee_km.db.LocalBook
+import com.tailoredapps.bookodyssee_km.db.LocalUser
 import com.tailoredapps.bookodyssee_km.db.User
-import comtailoredappsbookodysseekmcache.Book
 
 internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
-
-//    private val listOfStringsAdapter = object : ColumnAdapter<List<String>, String> {
-//        override fun decode(databaseValue: String) =
-//            if (databaseValue.isNotEmpty()) {
-//                listOf()
-//            } else {
-//                databaseValue.split(",")
-//            }
-//
-//        override fun encode(value: List<String>) =
-//            value.joinToString(separator = ",")
-//    }
-
-    private val database = BookOdysseeDb(driver = databaseDriverFactory.createDriver()
-//        BookAdapter = Book.Adapter(authorsAdapter = listOfStringsAdapter)
+    private val database = BookOdysseeDb(
+        driver = databaseDriverFactory.createDriver()
     )
 
     private val dbQuery = database.bookOdysseeQueries
 
-    internal fun getUser(username: String): User? {
+    internal fun getUser(username: String): LocalUser? {
         val queryResult = dbQuery.selectUser(username = username).executeAsOneOrNull()
         return if (queryResult != null) {
-            User(
+            LocalUser(
+                id = queryResult.id,
                 username = queryResult.username.orEmpty(),
                 password = queryResult.password.orEmpty()
             )
@@ -40,6 +27,27 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
     internal fun createUser(user: User) {
         dbQuery.transaction {
             insertUser(user)
+        }
+    }
+
+    internal fun getAllBooksByUser(userId: Long): List<LocalBook> {
+        val queryResult = dbQuery.selectAllBooksByUser(userId).executeAsList()
+        return if (queryResult.isNotEmpty()) {
+            queryResult.map { book ->
+                LocalBook(
+                    userId = book.userId ?: 0,
+                    bookId = book.bookId.orEmpty(),
+                    title = book.title,
+                    authors = book.authors,
+                    publisher = book.publisher,
+                    publishedDate = book.publishedDate.orEmpty(),
+                    pageCount = book.pageCount,
+                    imageLink = book.imageLink,
+                    readingState = book.readingState.orEmpty()
+                )
+            }
+        } else {
+            emptyList()
         }
     }
 
@@ -83,10 +91,12 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
     }
 
     internal fun removeBookFromReadingList(userId: Long, bookId: String) {
-        dbQuery.removeBook(
-            userId = userId,
-            bookId = bookId
-        )
+        dbQuery.transaction {
+            removeBook(
+                userId = userId,
+                bookId = bookId
+            )
+        }
     }
 
     private fun insertUser(user: User) {

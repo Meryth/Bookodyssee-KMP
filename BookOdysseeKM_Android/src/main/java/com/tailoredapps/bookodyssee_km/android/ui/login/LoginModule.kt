@@ -1,4 +1,4 @@
-package com.tailoredapps.bookodyssee_km.android.login
+package com.tailoredapps.bookodyssee_km.android.ui.login
 
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module

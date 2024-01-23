@@ -3,6 +3,7 @@ package com.tailoredapps.bookodyssee_km
 import com.tailoredapps.bookodyssee_km.cache.Database
 import com.tailoredapps.bookodyssee_km.cache.DatabaseDriverFactory
 import com.tailoredapps.bookodyssee_km.db.LocalBook
+import com.tailoredapps.bookodyssee_km.db.LocalUser
 import com.tailoredapps.bookodyssee_km.db.User
 
 
@@ -10,7 +11,7 @@ class BookOdysseeSDK(databaseDriverFactory: DatabaseDriverFactory) {
     private val database = Database(databaseDriverFactory)
 
     @Throws(Throwable::class)
-    fun getUser(username: String): User? {
+    fun getUser(username: String): LocalUser? {
         return database.getUser(username)
     }
 
@@ -22,6 +23,11 @@ class BookOdysseeSDK(databaseDriverFactory: DatabaseDriverFactory) {
                 password = password
             )
         )
+    }
+
+    @Throws(Throwable::class)
+    fun getAllBooksByUser(userId: Long): List<LocalBook> {
+        return database.getAllBooksByUser(userId)
     }
 
     @Throws(Throwable::class)

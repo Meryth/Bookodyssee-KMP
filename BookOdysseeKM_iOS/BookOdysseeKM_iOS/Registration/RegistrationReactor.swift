@@ -12,10 +12,6 @@ import shared
 
 class RegistrationReactor: AsyncReactor {
     
-    //    var moc: NSManagedObjectContext
-    //    let defaults = UserDefaults.standard
-    let settings : Multiplatform_settingsSettings
-    
     enum Action {
         case onRegisterClick
     }
@@ -36,6 +32,7 @@ class RegistrationReactor: AsyncReactor {
     private(set) var state: State
     
     private let bookOdysseeSDK: BookOdysseeSDK
+    private let settings : Multiplatform_settingsSettings
     
     @MainActor
     init(
@@ -65,17 +62,26 @@ class RegistrationReactor: AsyncReactor {
             do {
                 
                 let savedUser = try bookOdysseeSDK.getUser(username: state.username)
-                
-                settings.putString(key: "test", value: state.username)
-                let test = settings.getStringOrNull(key: "test")
-                
-                print("omggg \(test)")
-                
+              
                 if savedUser == nil {
                     try bookOdysseeSDK.createUser(username: state.username, password: state.password)
+                    
+                    let newUser = try bookOdysseeSDK.getUser(username: state.username)
+                    
+                    guard let userId = newUser?.id else {
+                        print("Error: Id cannot be nil!")
+                        return
+                    }
+                    
+                    settings.putLong(key: "userId", value: userId)
+                    
+                    
                 } else {
                     print("User already exists!")
                 }
+                
+              
+                
             } catch {
                 print("Error when trying to register!")
                 print(error)

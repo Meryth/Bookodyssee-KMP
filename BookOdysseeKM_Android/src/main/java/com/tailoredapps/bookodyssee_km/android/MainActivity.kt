@@ -13,8 +13,8 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import androidx.navigation.compose.rememberNavController
-import com.tailoredapps.bookodyssee_km.android.base_ui.BookOdysseeTheme
 import com.tailoredapps.bookodyssee_km.android.navigation.AppNavHost
+import com.tailoredapps.bookodyssee_km.android.ui.base_ui.BookOdysseeTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

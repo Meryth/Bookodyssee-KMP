@@ -3,7 +3,7 @@ package com.tailoredapps.bookodyssee_km.android.navigation.destinations
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.tailoredapps.bookodyssee_km.android.registration.RegistrationScreen
+import com.tailoredapps.bookodyssee_km.android.ui.registration.RegistrationScreen
 
 internal const val ROUTE_REGISTRATION: String = "registration"
 

@@ -1,4 +1,4 @@
-package com.tailoredapps.bookodyssee_km.android.main
+package com.tailoredapps.bookodyssee_km.android.ui.main
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ExperimentalLayoutApi

@@ -14,8 +14,6 @@ import KMPNativeCoroutinesCore
 
 class BookReactor: AsyncReactor {
     
-    //    let defaults = UserDefaults.standard
-    
     enum Action {
         case loadBookData(String)
         case addBookToReadingList
@@ -34,14 +32,17 @@ class BookReactor: AsyncReactor {
     private(set) var state: State
     
     private let bookOdysseeSDK: BookOdysseeSDK
+    private let settings: Multiplatform_settingsSettings
     
     @MainActor
     init(
         state: State = State(),
-        bookOdysseeSDK: BookOdysseeSDK = Config.bookOdysseeSDK
+        bookOdysseeSDK: BookOdysseeSDK = Config.bookOdysseeSDK,
+        settings: Multiplatform_settingsSettings = Config.settings
     ) {
         self.state = state
         self.bookOdysseeSDK = bookOdysseeSDK
+        self.settings = settings
     }
     
     func action(_ action: Action) async {
@@ -53,7 +54,7 @@ class BookReactor: AsyncReactor {
                     state.book = result
                 }
                 
-                let savedBooks = try bookOdysseeSDK.getBook(userId: 0, bookId: bookId)
+                let savedBooks = try bookOdysseeSDK.getBook(userId: settings.getLong(key: "userId", defaultValue: 0), bookId: bookId)
                 
                 if savedBooks == nil {
                     state.readingState = ReadingState.notAdded.description
@@ -77,7 +78,7 @@ class BookReactor: AsyncReactor {
                 
                 try bookOdysseeSDK.addBookToReadingList(
                     book: LocalBook(
-                        userId: 0,
+                        userId: settings.getLong(key: "userId", defaultValue: 0),
                         bookId: bookItem.id,
                         title: bookItem.volumeInfo.title,
                         authors: bookItem.volumeInfo.authors?.joined(separator: ";"),
@@ -100,7 +101,7 @@ class BookReactor: AsyncReactor {
                     return
                 }
                 
-                try bookOdysseeSDK.removeBookFromReadingList(userId: 0, bookId: bookItem.id)
+                try bookOdysseeSDK.removeBookFromReadingList(userId: settings.getLong(key: "userId", defaultValue: 0), bookId: bookItem.id)
                 state.readingState = ReadingState.notAdded.description
             } catch {
                 print("Error when removing book!")
@@ -113,7 +114,7 @@ class BookReactor: AsyncReactor {
                     return
                 }
                 
-                try bookOdysseeSDK.updateReadingState(readingState: ReadingState.reading.description, userId: 0, bookId: bookItem.id)
+                try bookOdysseeSDK.updateReadingState(readingState: ReadingState.reading.description, userId: settings.getLong(key: "userId", defaultValue: 0), bookId: bookItem.id)
                 state.readingState = ReadingState.reading.description
             } catch {
                 print("Error when starting book!")
@@ -126,7 +127,7 @@ class BookReactor: AsyncReactor {
                     return
                 }
                 
-                try bookOdysseeSDK.updateReadingState(readingState: ReadingState.finished.description, userId: 0, bookId: bookItem.id)
+                try bookOdysseeSDK.updateReadingState(readingState: ReadingState.finished.description, userId: settings.getLong(key: "userId", defaultValue: 0), bookId: bookItem.id)
                 state.readingState = ReadingState.finished.description
             } catch {
                 print("Error when finishing book!")

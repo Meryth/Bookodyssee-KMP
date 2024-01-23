@@ -1,10 +1,9 @@
-package com.tailoredapps.bookodyssee_km.android.registration
+package com.tailoredapps.bookodyssee_km.android.ui.registration
 
 import androidx.lifecycle.viewModelScope
 import at.florianschuster.control.EffectController
 import at.florianschuster.control.createEffectController
 import com.russhwolf.settings.Settings
-import com.russhwolf.settings.set
 import com.tailoredapps.bookodyssee_km.BookOdysseeSDK
 import com.tailoredapps.bookodyssee_km.android.control.EffectControllerViewModel
 import kotlinx.coroutines.flow.flow
@@ -70,8 +69,18 @@ class RegistrationViewModel(
                                             password = currentState.password
                                         )
                                     }.onSuccess {
-                                        settings.set("test", currentState.username)
                                         Timber.d("User saved to DB")
+
+                                        kotlin.runCatching {
+                                            bookOdysseeSDK.getUser(currentState.username)
+                                        }.onSuccess { user ->
+                                            if (user != null) {
+                                                settings.putLong("userId", user.id)
+                                            }
+                                        }.onFailure {
+                                            Timber.e("Unable to get User from DB: $it")
+                                        }
+
                                     }.onFailure {
                                         Timber.d("Error when saving user to DB: $it")
                                     }

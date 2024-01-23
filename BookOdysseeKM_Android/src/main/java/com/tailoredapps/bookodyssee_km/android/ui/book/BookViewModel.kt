@@ -1,4 +1,4 @@
-package com.tailoredapps.bookodyssee_km.android.book
+package com.tailoredapps.bookodyssee_km.android.ui.book
 
 import androidx.lifecycle.viewModelScope
 import at.florianschuster.control.Controller
@@ -7,7 +7,6 @@ import com.russhwolf.settings.Settings
 import com.tailoredapps.bookodyssee_km.BookItem
 import com.tailoredapps.bookodyssee_km.BookOdysseeSDK
 import com.tailoredapps.bookodyssee_km.DataRepo
-import com.tailoredapps.bookodyssee_km.SettingsInstance
 import com.tailoredapps.bookodyssee_km.android.control.ControllerViewModel
 import com.tailoredapps.bookodyssee_km.db.LocalBook
 import com.tailoredapps.bookodyssee_km.db.ReadingState
@@ -20,6 +19,7 @@ import timber.log.Timber
 
 class BookViewModel(
     private val bookOdysseeSDK: BookOdysseeSDK,
+    private val settings: Settings,
     bookId: String,
 ) : ControllerViewModel<BookViewModel.Action, BookViewModel.State>() {
     sealed class Action {
@@ -58,9 +58,11 @@ class BookViewModel(
                         }
 
                         runCatching {
-                            bookOdysseeSDK.getBook(userId = 0, bookId = bookId)
+                            bookOdysseeSDK.getBook(
+                                userId = settings.getLong("userId", 0),
+                                bookId = bookId
+                            )
                         }.onSuccess { book ->
-                            Timber.d("aaa book is $book")
                             if (book != null) {
                                 emit(Mutation.SetReadingState(book.readingState))
                             }
@@ -75,7 +77,7 @@ class BookViewModel(
                             if (book != null) {
                                 bookOdysseeSDK.addBookToReadingList(
                                     book = LocalBook(
-                                        userId = 0,
+                                        userId = settings.getLong("userId", 0),
                                         bookId = bookId,
                                         authors = convertListToString(book.authors.orEmpty()),
                                         title = book.title,
@@ -98,7 +100,7 @@ class BookViewModel(
                         runCatching {
                             bookOdysseeSDK.updateReadingState(
                                 readingState = action.readingState,
-                                userId = 0,
+                                userId = settings.getLong("userId", 0),
                                 bookId = bookId
                             )
                         }.onSuccess {
@@ -111,7 +113,7 @@ class BookViewModel(
                     is Action.RemoveBookFromReadingList -> flow {
                         runCatching {
                             bookOdysseeSDK.removeBookFromReadingList(
-                                userId = 0,
+                                userId = settings.getLong("userId", 0),
                                 bookId = bookId
                             )
                         }.onSuccess {

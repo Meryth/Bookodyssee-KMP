@@ -1,4 +1,4 @@
-package com.tailoredapps.bookodyssee_km.android.search
+package com.tailoredapps.bookodyssee_km.android.ui.search
 
 import androidx.lifecycle.viewModelScope
 import at.florianschuster.control.Controller

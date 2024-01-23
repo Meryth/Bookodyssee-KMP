@@ -3,7 +3,7 @@ package com.tailoredapps.bookodyssee_km.android.navigation.destinations
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.tailoredapps.bookodyssee_km.android.search.SearchScreen
+import com.tailoredapps.bookodyssee_km.android.ui.search.SearchScreen
 
 internal const val ROUTE_SEARCH: String = "search"
 

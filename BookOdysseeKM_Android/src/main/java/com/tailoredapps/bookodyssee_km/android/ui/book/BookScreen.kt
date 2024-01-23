@@ -1,4 +1,4 @@
-package com.tailoredapps.bookodyssee_km.android.book
+package com.tailoredapps.bookodyssee_km.android.ui.book
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
@@ -30,8 +30,8 @@ import coil.compose.rememberAsyncImagePainter
 import com.tailoredapps.bookodyssee_km.BookImageLinks
 import com.tailoredapps.bookodyssee_km.VolumeInfo
 import com.tailoredapps.bookodyssee_km.android.R
-import com.tailoredapps.bookodyssee_km.android.base_ui.PrimaryButton
-import com.tailoredapps.bookodyssee_km.android.book.items.DataRow
+import com.tailoredapps.bookodyssee_km.android.ui.base_ui.PrimaryButton
+import com.tailoredapps.bookodyssee_km.android.ui.book.items.DataRow
 import com.tailoredapps.bookodyssee_km.db.ReadingState
 import org.koin.androidx.compose.getViewModel
 import org.koin.core.parameter.parametersOf

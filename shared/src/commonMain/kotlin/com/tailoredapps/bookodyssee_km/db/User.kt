@@ -7,3 +7,10 @@ data class User(
     val username: String,
     val password: String
 )
+
+@Serializable
+data class LocalUser(
+    val id: Long,
+    val username: String,
+    val password: String
+)

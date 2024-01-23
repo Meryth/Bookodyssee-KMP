@@ -5,7 +5,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.tailoredapps.bookodyssee_km.android.main.MainScreen
+import com.tailoredapps.bookodyssee_km.android.ui.main.MainScreen
 
 internal const val ROUTE_MAIN: String = "main"
 

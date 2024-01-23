@@ -1,4 +1,4 @@
-package com.tailoredapps.bookodyssee_km.android.start
+package com.tailoredapps.bookodyssee_km.android.ui.start
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,7 +18,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tailoredapps.bookodyssee_km.android.R
-import com.tailoredapps.bookodyssee_km.android.base_ui.PrimaryButton
+import com.tailoredapps.bookodyssee_km.android.ui.base_ui.PrimaryButton
 
 @Composable
 fun StartScreen(

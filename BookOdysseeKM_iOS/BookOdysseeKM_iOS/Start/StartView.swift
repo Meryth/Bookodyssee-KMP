@@ -37,8 +37,8 @@ struct StartView: View {
                 
                 Group{
                     NavigationLink(
-                        destination: ReactorView(LoginReactor()) {
-                            LoginView()
+                        destination: ReactorView(RegistrationReactor()) {
+                            RegistrationView()
                         }
                     ) {
                         Text("Login").padding(15).buttonStyle(.borderless)

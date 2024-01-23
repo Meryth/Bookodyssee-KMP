@@ -1,5 +1,3 @@
-import kotlin.collections.List;
-
 CREATE TABLE User(
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     username TEXT,
@@ -10,7 +8,7 @@ CREATE TABLE Book(
     userId INTEGER,
     bookId TEXT,
     title TEXT,
-    authors TEXT AS List<String>,
+    authors TEXT,
     publisher TEXT,
     publishedDate TEXT,
     pageCount INTEGER,

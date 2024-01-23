@@ -9,12 +9,18 @@ enum class ReadingState(val state: String) {
     FINISHED("FINISHED")
 }
 
+fun convertListToString(value: List<String>) =
+    value.joinToString(separator = ";")
+
+fun convertStringToList(databaseValue: String) =
+    databaseValue.split(";")
+
 @Serializable
 data class LocalBook(
     val userId: Long,
     val bookId: String,
     val title: String? = null,
-    val authors: List<String>? = null,
+    val authors: String? = null,
     val publisher: String? = null,
     val publishedDate: String,
     val pageCount: Long? = null,

@@ -7,21 +7,20 @@ import comtailoredappsbookodysseekmcache.Book
 
 internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
 
-    private val listOfStringsAdapter = object : ColumnAdapter<List<String>, String> {
-        override fun decode(databaseValue: String) =
-            if (databaseValue.isNotEmpty()) {
-                listOf()
-            } else {
-                databaseValue.split(",")
-            }
+//    private val listOfStringsAdapter = object : ColumnAdapter<List<String>, String> {
+//        override fun decode(databaseValue: String) =
+//            if (databaseValue.isNotEmpty()) {
+//                listOf()
+//            } else {
+//                databaseValue.split(",")
+//            }
+//
+//        override fun encode(value: List<String>) =
+//            value.joinToString(separator = ",")
+//    }
 
-        override fun encode(value: List<String>) =
-            value.joinToString(separator = ",")
-    }
-
-    private val database = BookOdysseeDb(
-        driver = databaseDriverFactory.createDriver(),
-        BookAdapter = Book.Adapter(authorsAdapter = listOfStringsAdapter)
+    private val database = BookOdysseeDb(driver = databaseDriverFactory.createDriver()
+//        BookAdapter = Book.Adapter(authorsAdapter = listOfStringsAdapter)
     )
 
     private val dbQuery = database.bookOdysseeQueries

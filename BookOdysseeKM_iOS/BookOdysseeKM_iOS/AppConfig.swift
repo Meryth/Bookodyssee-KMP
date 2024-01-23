@@ -12,13 +12,13 @@ import shared
 let Config = AppConfig.prod
 
 struct AppConfig {
-    let userSDK: UserSDK
+    let bookOdysseeSDK: BookOdysseeSDK
 }
 
 extension AppConfig {
     static var prod: AppConfig {
         .init(
-            userSDK: UserSDK(databaseDriverFactory: DatabaseDriverFactory())
+            bookOdysseeSDK: BookOdysseeSDK(databaseDriverFactory: DatabaseDriverFactory())
         )
     }
 }

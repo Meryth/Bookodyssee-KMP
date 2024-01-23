@@ -9,6 +9,7 @@ import com.tailoredapps.bookodyssee_km.DataRepo
 import com.tailoredapps.bookodyssee_km.android.control.ControllerViewModel
 import com.tailoredapps.bookodyssee_km.db.LocalBook
 import com.tailoredapps.bookodyssee_km.db.ReadingState
+import com.tailoredapps.bookodyssee_km.db.convertListToString
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
@@ -74,7 +75,7 @@ class BookViewModel(
                                     book = LocalBook(
                                         userId = 0,
                                         bookId = bookId,
-                                        authors = book.authors,
+                                        authors = convertListToString(book.authors.orEmpty()),
                                         title = book.title,
                                         publisher = book.publisher,
                                         publishedDate = book.publishedDate,

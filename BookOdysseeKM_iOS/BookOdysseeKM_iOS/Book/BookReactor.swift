@@ -14,7 +14,7 @@ import KMPNativeCoroutinesCore
 
 class BookReactor: AsyncReactor {
     
-//    let defaults = UserDefaults.standard
+    //    let defaults = UserDefaults.standard
     
     enum Action {
         case loadBookData(String)
@@ -33,9 +33,15 @@ class BookReactor: AsyncReactor {
     @Published
     private(set) var state: State
     
+    private let bookOdysseeSDK: BookOdysseeSDK
+    
     @MainActor
-    init(state: State = State()) {
+    init(
+        state: State = State(),
+        bookOdysseeSDK: BookOdysseeSDK = Config.bookOdysseeSDK
+    ) {
         self.state = state
+        self.bookOdysseeSDK = bookOdysseeSDK
     }
     
     func action(_ action: Action) async {
@@ -45,142 +51,86 @@ class BookReactor: AsyncReactor {
                 let sequence = asyncSequence(for: DataRepo().getBookById(id: bookId))
                 for try await result in sequence {
                     state.book = result
-                    print(result)
                 }
                 
-//                state.book = try await apiClient.getBookById(endpoint: .getBookById(id: bookId))
-//                
-//                let savedBooks : NSFetchRequest<LocalBook> = LocalBook.fetchRequest()
-//                if let bookId = state.book?.id {
-//                    guard let userId = defaults.string(forKey: "UserId") else {
-//                        throw CoreException.NilPointerError
-//                    }
-//                    savedBooks.predicate = NSPredicate(format: "bookId == %@ AND userId == %@", bookId, userId)
-//                    let numberOfBooks = try moc.count(for: savedBooks)
-//                    
-//                    if numberOfBooks <= 0 {
-//                        state.readingState = ReadingState.notAdded.description
-//                    } else {
-//                        let books = try moc.fetch(savedBooks).first
-//                        guard let savedReading = books?.readingState else {
-//                            throw CoreException.NilPointerError
-//                        }
-//                        state.readingState = savedReading
-//                    }
-//                }
+                let savedBooks = try bookOdysseeSDK.getBook(userId: 0, bookId: bookId)
+                
+                if savedBooks == nil {
+                    state.readingState = ReadingState.notAdded.description
+                } else {
+                    guard let readingState = savedBooks?.readingState else {
+                        print("ReadingState must not be nil!")
+                        return
+                    }
+                    state.readingState = readingState
+                }
             } catch {
                 print("Error when fetching book data!")
                 print(error)
             }
         case .addBookToReadingList:
             do {
-//                guard let bookItem = state.book else {
-//                    print("Book cannot be nil!")
-//                    throw CoreException.NilPointerError
-//                }
-//                
-//                convertBookItemToLocalBook(bookItem: bookItem)
-//                
-//                try moc.save()
-//                state.readingState = ReadingState.toRead.description
+                guard let bookItem = state.book else {
+                    print("Book cannot be nil!")
+                    return
+                }
+                
+                try bookOdysseeSDK.addBookToReadingList(
+                    book: LocalBook(
+                        userId: 0,
+                        bookId: bookItem.id,
+                        title: bookItem.volumeInfo.title,
+                        authors: bookItem.volumeInfo.authors?.joined(separator: ";"),
+                        publisher: bookItem.volumeInfo.publisher,
+                        publishedDate: bookItem.volumeInfo.publishedDate,
+                        pageCount: 0,
+                        imageLink: bookItem.volumeInfo.imageLinks?.thumbnail,
+                        readingState: ReadingState.toRead.description
+                    )
+                )
+                state.readingState = ReadingState.toRead.description
             } catch {
-                print("Error while saving book to DB!")
+                print("Error when adding book!")
                 print(error)
             }
         case .removeBookFromReadingList:
             do {
-//                let savedBooks : NSFetchRequest<LocalBook> = LocalBook.fetchRequest()
-//                
-//                if let bookId = state.book?.id {
-//                    guard let userId = defaults.string(forKey: "UserId") else {
-//                        print("UserId is nil!")
-//                        return
-//                    }
-//                    savedBooks.predicate = NSPredicate(format: "bookId == %@ AND userId == %@", bookId, userId)
-//                    
-//                    do {
-//                        let objects = try moc.fetch(savedBooks).first
-//                        
-//                        if let localBook = objects {
-//                            moc.delete(localBook)
-//                            
-//                            do {
-//                                try moc.save()
-//                                state.readingState = ReadingState.notAdded.description
-//                            } catch {
-//                                print("Error while deleting book from DB!")
-//                                print(error)
-//                                
-//                            }
-//                        }
-//                    } catch {
-//                        print("Unable to fetch saved books from DB!")
-//                        print(error)
-//                    }
-//                }
+                guard let bookItem = state.book else {
+                    print("Book cannot be nil!")
+                    return
+                }
+                
+                try bookOdysseeSDK.removeBookFromReadingList(userId: 0, bookId: bookItem.id)
+                state.readingState = ReadingState.notAdded.description
+            } catch {
+                print("Error when removing book!")
+                print(error)
             }
         case .startReadingBook:
             do {
-//                let savedBooks : NSFetchRequest<LocalBook> = LocalBook.fetchRequest()
-//                
-//                guard let userId = defaults.string(forKey: "UserId") else {
-//                    print("UserId is nil!")
-//                    return
-//                }
-//                
-//                if let bookId = state.book?.id {
-//                    savedBooks.predicate = NSPredicate(format: "bookId == %@ AND userId", bookId, userId)
-//                    
-//                    do {
-//                        let objects = try moc.fetch(savedBooks).first
-//                        
-//                        if let localBook = objects {
-//                            localBook.setValue(ReadingState.reading.description, forKey: "readingState")
-//                            
-//                            do {
-//                                try moc.save()
-//                                state.readingState = ReadingState.reading.description
-//                            } catch {
-//                                print("Error while updating reading state!")
-//                                print(error)
-//                            }
-//                        }
-//                    } catch {
-//                        print("Unable to fetch saved books from DB!")
-//                        print(error)
-//                    }
+                guard let bookItem = state.book else {
+                    print("Book cannot be nil!")
+                    return
                 }
+                
+                try bookOdysseeSDK.updateReadingState(readingState: ReadingState.reading.description, userId: 0, bookId: bookItem.id)
+                state.readingState = ReadingState.reading.description
+            } catch {
+                print("Error when starting book!")
+                print(error)
+            }
         case .finishBook:
             do {
-//                let savedBooks : NSFetchRequest<LocalBook> = LocalBook.fetchRequest()
-//
-//                guard let userId = defaults.string(forKey: "UserId") else {
-//                    print("UserId is nil!")
-//                    return
-//                }
-//
-//                if let bookId = state.book?.id {
-//                    savedBooks.predicate = NSPredicate(format: "bookId == %@ AND userId == %@", bookId, userId)
-//
-//                    do {
-//                        let objects = try moc.fetch(savedBooks).first
-//
-//                        if let localBook = objects {
-//                            localBook.setValue(ReadingState.finished.description, forKey: "readingState")
-//
-//                            do {
-//                                try moc.save()
-//                                state.readingState = ReadingState.finished.description
-//                            } catch {
-//                                print("Error while updating reading state!")
-//                                print(error)
-//                            }
-//                        }
-//                    } catch {
-//                        print("Unable to fetch saved books from DB!")
-//                        print(error)
-//                    }
-//                }
+                guard let bookItem = state.book else {
+                    print("Book cannot be nil!")
+                    return
+                }
+                
+                try bookOdysseeSDK.updateReadingState(readingState: ReadingState.finished.description, userId: 0, bookId: bookItem.id)
+                state.readingState = ReadingState.finished.description
+            } catch {
+                print("Error when finishing book!")
+                print(error)
             }
         }
     }

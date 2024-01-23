@@ -34,15 +34,15 @@ class RegistrationReactor: AsyncReactor {
     @Published
     private(set) var state: State
     
-    private let userSDK: UserSDK
+    private let bookOdysseeSDK: BookOdysseeSDK
     
     @MainActor
     init(
         state: State = State(),
-        userSDK: UserSDK = Config.userSDK
+        bookOdysseeSDK: BookOdysseeSDK = Config.bookOdysseeSDK
     ) {
         self.state = state
-        self.userSDK = userSDK
+        self.bookOdysseeSDK = bookOdysseeSDK
     }
     
     func action(_ action: SyncAction) {
@@ -59,13 +59,18 @@ class RegistrationReactor: AsyncReactor {
     func action(_ action: Action) async {
         switch action {
         case .onRegisterClick:
-            
-            let savedUser = userSDK.getUser(username: state.username)
-            
-            if savedUser == nil {
-                userSDK.createUser(username: state.username, password: state.password)
-            } else {
-                print("User already exists!")
+            do {
+                
+                let savedUser = try bookOdysseeSDK.getUser(username: state.username)
+                
+                if savedUser == nil {
+                    try bookOdysseeSDK.createUser(username: state.username, password: state.password)
+                } else {
+                    print("User already exists!")
+                }
+            } catch {
+                print("Error when trying to register!")
+                print(error)
             }
         }
     }

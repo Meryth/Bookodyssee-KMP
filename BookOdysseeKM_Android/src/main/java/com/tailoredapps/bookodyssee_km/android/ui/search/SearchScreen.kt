@@ -11,6 +11,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -28,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tailoredapps.bookodyssee_km.BookItem
 import com.tailoredapps.bookodyssee_km.android.R
+import com.tailoredapps.bookodyssee_km.android.ui.base_ui.AppScaffold
 import com.tailoredapps.bookodyssee_km.android.ui.base_ui.BookItem
 import org.koin.androidx.compose.getViewModel
 
@@ -47,6 +49,7 @@ fun SearchScreen(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchView(
     searchQuery: String,
@@ -55,8 +58,8 @@ fun SearchView(
     onSearchClick: (String) -> Unit,
     onBookClick: (String) -> Unit,
 ) {
-    Scaffold(
-//        title = stringResource(id = R.string.app_name)
+    AppScaffold(
+        title = stringResource(id = R.string.app_name)
     ) { contentPadding ->
         Column(
             modifier = Modifier

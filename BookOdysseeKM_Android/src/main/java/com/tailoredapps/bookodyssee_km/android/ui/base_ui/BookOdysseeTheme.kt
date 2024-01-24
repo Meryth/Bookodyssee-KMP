@@ -20,7 +20,10 @@ fun BookOdysseeTheme(
 
     val colors = lightColorScheme(
         primary = Color(0xFFB99976),
+        primaryContainer = Color(0xFFE6CEAB),
+        onPrimaryContainer = Color(0xFF51391B),
         secondary = Color(0xFF331D00),
+        secondaryContainer = Color(0xFFDEBC98),
         tertiary = Color(0xFF735C00),
         onSurfaceVariant = Color(0xFF987554),
         outline = Color(0xFF71787D)

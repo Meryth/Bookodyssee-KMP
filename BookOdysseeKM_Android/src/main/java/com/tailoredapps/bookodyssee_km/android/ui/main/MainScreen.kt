@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.tailoredapps.bookodyssee_km.android.ui.base_ui.AppScaffold
 
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -20,7 +21,7 @@ fun MainScreen(
 ) {
     val mainNavHostController = rememberNavController()
 
-    Scaffold(
+    AppScaffold(
         contentWindowInsets = WindowInsets(
             0,
             0,

@@ -16,5 +16,5 @@ internal fun NavGraphBuilder.startScreen(onLoginClick: () -> Unit, onRegisterCli
     }
 }
 
-internal fun NavController.navigateToWelcome() =
+internal fun NavController.navigateToStart() =
     this.navigate(ROUTE_START)

@@ -24,7 +24,9 @@ class MainActivity : ComponentActivity() {
             val view = LocalView.current
             val darkTheme = isSystemInDarkTheme()
 
-            MainView()
+            BookOdysseeTheme {
+                MainView()
+            }
 
             SideEffect {
                 val window = this.window

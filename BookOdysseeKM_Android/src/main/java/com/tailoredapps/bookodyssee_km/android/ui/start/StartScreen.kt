@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,6 +17,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tailoredapps.bookodyssee_km.android.R
+import com.tailoredapps.bookodyssee_km.android.ui.base_ui.AppScaffold
 import com.tailoredapps.bookodyssee_km.android.ui.base_ui.PrimaryButton
 
 @Composable
@@ -36,7 +36,7 @@ fun StartScreenView(
     onLoginClick: () -> Unit,
     onRegisterClick: () -> Unit
 ) {
-    Scaffold { paddingValues ->
+    AppScaffold { paddingValues ->
         Column(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,

@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.control.core)
 
     implementation(libs.coil.compose)
+    implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.navigation.compose)
 
     api(libs.compose.foundation)

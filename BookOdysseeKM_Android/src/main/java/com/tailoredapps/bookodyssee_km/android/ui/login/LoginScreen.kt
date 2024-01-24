@@ -4,8 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -18,6 +18,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tailoredapps.bookodyssee_km.android.R
+import com.tailoredapps.bookodyssee_km.android.ui.base_ui.AppScaffold
 import com.tailoredapps.bookodyssee_km.android.ui.base_ui.DefaultTextField
 import com.tailoredapps.bookodyssee_km.android.ui.base_ui.PrimaryButton
 import kotlinx.coroutines.flow.launchIn
@@ -49,6 +50,7 @@ fun LoginScreen(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginView(
     username: String,
@@ -58,8 +60,8 @@ fun LoginView(
     onPasswordChange: (String) -> Unit,
     onLoginClick: () -> Unit
 ) {
-    Scaffold(
-//        title = stringResource(id = R.string.app_name)
+    AppScaffold(
+        title = stringResource(id = R.string.app_name)
     ) { contentPadding ->
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,

@@ -13,8 +13,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -30,6 +30,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.tailoredapps.bookodyssee_km.BookImageLinks
 import com.tailoredapps.bookodyssee_km.VolumeInfo
 import com.tailoredapps.bookodyssee_km.android.R
+import com.tailoredapps.bookodyssee_km.android.ui.base_ui.AppScaffold
 import com.tailoredapps.bookodyssee_km.android.ui.base_ui.PrimaryButton
 import com.tailoredapps.bookodyssee_km.android.ui.book.items.DataRow
 import com.tailoredapps.bookodyssee_km.db.ReadingState
@@ -64,6 +65,7 @@ fun BookScreen(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BookView(
     bookVolume: VolumeInfo,
@@ -73,8 +75,8 @@ fun BookView(
     onUpdateReadingState: (String) -> Unit,
     onRemoveFromListClick: () -> Unit
 ) {
-    Scaffold(
-//        title = stringResource(id = R.string.app_name)
+    AppScaffold(
+        title = stringResource(id = R.string.app_name)
     ) { contentPadding ->
         Column(
             modifier = Modifier

@@ -1,8 +1,8 @@
 //
-//  HomeReactor.swift
+//  FinishedReactor.swift
 //  BookOdysseeKM_iOS
 //
-//  Created by Elna on 23.01.24.
+//  Created by Elna on 24.01.24.
 //  Copyright © 2024 orgName. All rights reserved.
 //
 
@@ -10,15 +10,14 @@ import Foundation
 import AsyncReactor
 import shared
 
-class HomeReactor: AsyncReactor {
+class FinishedReactor: AsyncReactor {
     
     enum Action {
         case loadBooks
     }
     
     struct State {
-        var toReadList: [LocalBook] = []
-        var currentlyReadingList: [LocalBook] = []
+        var finishedList: [LocalBook] = []
     }
     
     @Published
@@ -44,18 +43,14 @@ class HomeReactor: AsyncReactor {
             do {
                 let savedBooks = try bookOdysseeSDK.getAllBooksByUser(userId: settings.getLong(key: "userId", defaultValue: 0))
                 
-                state.currentlyReadingList = savedBooks.filter { book in
-                    return book.readingState == ReadingState.reading.description
+                state.finishedList = savedBooks.filter { book in
+                    return book.readingState == ReadingState.finished.description
                 }
                 
-                state.toReadList = savedBooks.filter { book in
-                    return book.readingState == ReadingState.toRead.description
-                }
             } catch {
                 print("Error when fetching books!")
                 print(error)
             }
         }
     }
-    
 }

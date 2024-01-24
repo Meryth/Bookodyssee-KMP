@@ -74,7 +74,7 @@ class RegistrationReactor: AsyncReactor {
                     }
                     
                     settings.putLong(key: "userId", value: userId)
-                    
+                    NotificationCenter.default.post(name: .DidLogin, object: nil)
                     
                 } else {
                     print("User already exists!")

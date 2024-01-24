@@ -51,8 +51,8 @@ struct StartView: View {
                 
                 
                 NavigationLink(
-                    destination: ReactorView(HomeReactor()) {
-                        HomeView()
+                    destination: ReactorView(RegistrationReactor()) {
+                        RegistrationView()
                     }
                 ) {
                     Text("Register")

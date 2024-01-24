@@ -8,16 +8,13 @@
 
 import Foundation
 import AsyncReactor
-import CoreData
+import shared
 
 public extension Notification.Name {
     static let DidLogin = Notification.Name("login")
 }
 
 class LoginReactor: AsyncReactor {
-    //    var moc: NSManagedObjectContext
-    //    let defaults = UserDefaults.standard
-    
     enum Action {
         case onLoginClick
     }
@@ -36,14 +33,19 @@ class LoginReactor: AsyncReactor {
     @Published
     private(set) var state: State
     
+    private let bookOdysseeSDK: BookOdysseeSDK
+    private let settings : Multiplatform_settingsSettings
+    
     @MainActor
     init(
-//        moc: NSManagedObjectContext,
-        state: State = State()
+        state: State = State(),
+        bookOdysseeSDK: BookOdysseeSDK = Config.bookOdysseeSDK,
+        settings: Multiplatform_settingsSettings = Config.settings
     ) {
-            //        self.moc = moc
-            self.state = state
-        }
+        self.state = state
+        self.bookOdysseeSDK = bookOdysseeSDK
+        self.settings = settings
+    }
     
     func action(_ action: SyncAction) {
         switch action {
@@ -57,7 +59,21 @@ class LoginReactor: AsyncReactor {
     func action(_ action: Action) async {
         switch action {
         case .onLoginClick:
-           print("hu")
+            do {
+                let savedUser = try bookOdysseeSDK.getUser(username: state.username)
+                
+                if savedUser == nil {
+                    print("Error: user not found!")
+                    return
+                } else {
+                    if let userId = savedUser?.id {
+                        settings.putLong(key: "userId", value: userId)                    }
+                    NotificationCenter.default.post(name: .DidLogin, object: nil)
+                }
+            } catch {
+                print("Invalid credentials!")
+                print(error)
+            }
         }
     }
 }

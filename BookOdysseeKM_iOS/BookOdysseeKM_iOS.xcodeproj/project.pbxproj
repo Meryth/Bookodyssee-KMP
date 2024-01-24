@@ -23,6 +23,9 @@
 		516DE8822B5FD1F30041D994 /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516DE8812B5FD1F30041D994 /* BookView.swift */; };
 		516DE8842B5FD2040041D994 /* BookReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516DE8832B5FD2040041D994 /* BookReactor.swift */; };
 		516DE8872B5FD31A0041D994 /* ReadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516DE8862B5FD31A0041D994 /* ReadingState.swift */; };
+		51995C012B619CE60010783C /* FinishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51995C002B619CE60010783C /* FinishedView.swift */; };
+		51995C032B619D250010783C /* FinishedReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51995C022B619D250010783C /* FinishedReactor.swift */; };
+		51995C052B619F610010783C /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51995C042B619F610010783C /* BottomBar.swift */; };
 		519AC29E2B5FBBAF009C1FD6 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519AC29D2B5FBBAF009C1FD6 /* AppConfig.swift */; };
 		51AB74BC2B6065A000570355 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AB74BB2B6065A000570355 /* HomeView.swift */; };
 		51AB74BE2B6065A800570355 /* HomeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AB74BD2B6065A800570355 /* HomeReactor.swift */; };
@@ -59,6 +62,9 @@
 		516DE8812B5FD1F30041D994 /* BookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookView.swift; sourceTree = "<group>"; };
 		516DE8832B5FD2040041D994 /* BookReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookReactor.swift; sourceTree = "<group>"; };
 		516DE8862B5FD31A0041D994 /* ReadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingState.swift; sourceTree = "<group>"; };
+		51995C002B619CE60010783C /* FinishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedView.swift; sourceTree = "<group>"; };
+		51995C022B619D250010783C /* FinishedReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedReactor.swift; sourceTree = "<group>"; };
+		51995C042B619F610010783C /* BottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
 		519AC29D2B5FBBAF009C1FD6 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		51AB74BB2B6065A000570355 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		51AB74BD2B6065A800570355 /* HomeReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReactor.swift; sourceTree = "<group>"; };
@@ -106,6 +112,7 @@
 			children = (
 				512B5F752B5D54BA00A2A3ED /* BookDataRow.swift */,
 				51AB74BF2B6067C300570355 /* BookList.swift */,
+				51995C042B619F610010783C /* BottomBar.swift */,
 			);
 			path = BaseItems;
 			sourceTree = "<group>";
@@ -143,6 +150,15 @@
 				516DE8862B5FD31A0041D994 /* ReadingState.swift */,
 			);
 			path = Persistence;
+			sourceTree = "<group>";
+		};
+		51995BFF2B619CDD0010783C /* Finished */ = {
+			isa = PBXGroup;
+			children = (
+				51995C002B619CE60010783C /* FinishedView.swift */,
+				51995C022B619D250010783C /* FinishedReactor.swift */,
+			);
+			path = Finished;
 			sourceTree = "<group>";
 		};
 		51AB74BA2B60659800570355 /* Home */ = {
@@ -183,6 +199,7 @@
 		7555FF7D242A565900829871 /* BookOdysseeKM_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				51995BFF2B619CDD0010783C /* Finished */,
 				51AB74BA2B60659800570355 /* Home */,
 				516DE8852B5FD2EE0041D994 /* Persistence */,
 				516DE87C2B5FD18F0041D994 /* Book */,
@@ -309,7 +326,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51995C012B619CE60010783C /* FinishedView.swift in Sources */,
 				516DE8872B5FD31A0041D994 /* ReadingState.swift in Sources */,
+				51995C032B619D250010783C /* FinishedReactor.swift in Sources */,
 				516D69932B5C18D900908D6C /* LoginView.swift in Sources */,
 				512B5F762B5D54BA00A2A3ED /* BookDataRow.swift in Sources */,
 				519AC29E2B5FBBAF009C1FD6 /* AppConfig.swift in Sources */,
@@ -318,6 +337,7 @@
 				51E0DE532B5EB21400403A8C /* RegistrationView.swift in Sources */,
 				516D699B2B5C1A4E00908D6C /* LoginReactor.swift in Sources */,
 				516DE8802B5FD1DB0041D994 /* DataRow.swift in Sources */,
+				51995C052B619F610010783C /* BottomBar.swift in Sources */,
 				51E0DE552B5EB24B00403A8C /* RegistrationReactor.swift in Sources */,
 				51AB74BE2B6065A800570355 /* HomeReactor.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,

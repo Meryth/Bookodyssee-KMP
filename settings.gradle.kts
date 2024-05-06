@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 rootProject.name = "BookOdyssee_KM"
 include(":BookOdysseeKM_Android")
 include(":shared")
+include(":shared:benchmark")

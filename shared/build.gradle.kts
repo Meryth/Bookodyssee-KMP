@@ -46,6 +46,7 @@ kotlin {
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+            implementation(libs.androidx.profileinstaller)
         }
         androidMain.dependencies {
             implementation(libs.ktor.client.android)

@@ -12,6 +12,7 @@ import shared
 
 public extension Notification.Name {
     static let DidLogin = Notification.Name("login")
+    static let DidRegister = Notification.Name("register")
 }
 
 class LoginReactor: AsyncReactor {

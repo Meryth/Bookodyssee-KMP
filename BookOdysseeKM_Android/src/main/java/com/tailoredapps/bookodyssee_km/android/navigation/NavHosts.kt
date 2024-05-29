@@ -67,7 +67,7 @@ fun NavHostController.MainNavHost() {
                 onRegisterClick = this@MainNavHost::navigateToRegistration
             )
             loginScreen(onLoginSuccess = this@MainNavHost::navigateToHome)
-            registrationScreen(onRegistrationSuccess = this@MainNavHost::navigateToHome)
+            registrationScreen(onRegistrationSuccess = this@MainNavHost::navigateToLogin)
             homeScreen(
                 navController = this@MainNavHost,
                 onBookItemClick = this@MainNavHost::navigateToBook,
